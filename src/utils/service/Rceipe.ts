@@ -1,7 +1,7 @@
-import { URLS } from "../../constants/urls";
-import { convertRecipeItem } from "../../formatters/itemMapper";
-import { RecipeHit, RecipeQueryOptions } from "../../interfaces/items/itemsInterfaces";
-import { ApiResponse, RecipeItem } from "../../interfaces/providers/apiResponse";
+import { URLS } from "../constants/urls";
+import { convertRecipeItem } from "../formatters/itemMapper";
+import { RecipeHit, RecipeQueryOptions } from "../interfaces/items/itemsInterfaces";
+import { ApiResponse, RecipeItem } from "../interfaces/providers/apiResponse";
 import { DataFetcher } from "./DataFetcher";
 
 class Recipe extends DataFetcher {

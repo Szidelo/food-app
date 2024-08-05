@@ -1,4 +1,4 @@
-import { URLS } from "../../constants/urls";
+import { URLS } from "../constants/urls";
 
 const APP_ID = import.meta.env.VITE_APP_API_RECIPE_ID;
 const APP_KEY = import.meta.env.VITE_APP_API_RECIPE_KEY;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { recipeService } from "./utils/service/services/Rceipe";
+import { recipeService } from "./utils/service/Rceipe";
 import { RecipeItem } from "./utils/interfaces/providers/apiResponse";
 import { helpers } from "./utils/helpers/functions";
 
