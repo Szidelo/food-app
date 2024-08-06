@@ -2,14 +2,18 @@ import { URLS } from "../constants/urls";
 
 const APP_ID = import.meta.env.VITE_APP_API_RECIPE_ID;
 const APP_KEY = import.meta.env.VITE_APP_API_RECIPE_KEY;
+const APP_ID_FOOD = import.meta.env.VITE_APP_API_FOOD_DB_ID;
+const APP_KEY_FOOD = import.meta.env.VITE_APP_API_FOOD_DB_KEY;
+const APP_ID_NUTRITION = import.meta.env.VITE_APP_API_NUTRITION_ID;
+const APP_KEY_NUTRITION = import.meta.env.VITE_APP_API_NUTRITION_KEY;
 
 class DataFetcher {
-	static createUrl = (url: string, ...args: string[]): string => {
+	protected createUrl = (url: string, ...args: string[]): string => {
 		return `${URLS.BASE_URL}${url}&app_id=${APP_ID}&app_key=${APP_KEY}&${args && args.join("&")}`;
 	};
 
 	protected request = async <T extends object>(info: RequestInfo, init?: RequestInit): Promise<T | null> => {
-		const defaultUrl = DataFetcher.createUrl(info as string);
+		const defaultUrl = this.createUrl(info as string);
 		const defaultParams = {
 			method: "GET",
 			headers: {
@@ -36,4 +40,33 @@ class DataFetcher {
 	};
 }
 
-export { DataFetcher };
+class FoodDbFetcher extends DataFetcher {
+	protected createUrl = (url: string, ...args: string[]): string => {
+		return `${URLS.BASE_URL}${url}&app_id=${APP_ID_FOOD}&app_key=${APP_KEY_FOOD}&${args && args.join("&")}`;
+	};
+}
+
+class NutrientAnalysisFetcher extends DataFetcher {
+	protected createUrl = (url: string): string => {
+		return `${URLS.BASE_URL}${url}?app_id=${APP_ID_NUTRITION}&app_key=${APP_KEY_NUTRITION}`;
+	};
+
+	public analyzeRecipe = async (recipeData: object): Promise<any> => {
+		const url = this.createUrl("/api/nutrition-details");
+		const params = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(recipeData),
+		};
+
+		const finalUrl = this.request<any>(url, params);
+		console.log("Final URL:", finalUrl);
+
+		return this.request<any>(url, params);
+	};
+}
+
+export { DataFetcher, FoodDbFetcher, NutrientAnalysisFetcher };

@@ -3,6 +3,19 @@ import "./App.css";
 import { recipeService } from "./utils/service/Rceipe";
 import { RecipeItem } from "./utils/interfaces/providers/apiResponse";
 import { helpers } from "./utils/helpers/functions";
+import { foodService } from "./utils/service/FoodDb";
+import { nutrientService } from "./utils/service/Nutrients";
+
+interface RecipeBody {
+	title: string;
+	ingr: string[];
+	url?: string;
+	summary?: string;
+	yield: string;
+	time?: string;
+	img?: string;
+	prep?: string;
+}
 
 function App() {
 	const [data, setData] = useState<RecipeItem[]>([]);
@@ -13,6 +26,12 @@ function App() {
 		const id = helpers.getRecipeIdFromUrl(uri);
 		setRecipeId(id);
 	};
+
+	useEffect(() => {
+		foodService.getFoodByQuery("Crispy Chicken Strips").then((response) => {
+			console.log("Food fetched:", response);
+		});
+	}, []);
 
 	useEffect(() => {
 		recipeService
@@ -28,6 +47,25 @@ function App() {
 			.catch((error) => {
 				console.error(error);
 			});
+	}, []);
+
+	useEffect(() => {
+		const apiBody: RecipeBody = {
+			title: "Chicken Salad",
+			ingr: [
+				"2 cups chopped cooked chicken breast",
+				"1/2 cup mayonnaise",
+				"1/4 cup chopped celery",
+				"1/4 cup chopped green onions",
+				"1 tablespoon lemon juice",
+				"Salt and pepper to taste",
+			],
+			yield: "1",
+		};
+
+		nutrientService.getNutritionDetails({ ...apiBody }).then((response) => {
+			console.log("Nutrition details fetched:", response);
+		});
 	}, []);
 
 	useEffect(() => {
