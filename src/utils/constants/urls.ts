@@ -5,5 +5,6 @@ export const URLS = {
 	TYPE_ANY: "type=any",
 	TYPE_PUBLIC: "type=public",
 	FOOD_DB: "api/food-database/v2/parser",
-	NUTRITION: "/api/nutrition-details",
+	NUTRITION_DETAILS: "/api/nutrition-details",
+	NUTRITION_DATA: "/api/nutrition-data",
 };

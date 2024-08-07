@@ -46,6 +46,12 @@ function App() {
 	}, []);
 
 	useEffect(() => {
+		nutrientService.getNutritionDetailsForIngredient("2 eggs").then((response) => {
+			console.log("Ingredient details fetched:", response);
+		});
+	}, []);
+
+	useEffect(() => {
 		const apiBody: RecipeParamsBody = {
 			title: "Chicken Salad",
 			ingr: [

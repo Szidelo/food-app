@@ -10,7 +10,7 @@ const APP_KEY_NUTRITION = import.meta.env.VITE_APP_API_NUTRITION_KEY;
 
 class DataFetcher {
 	protected createUrl = (url: string, ...args: string[]): string => {
-		return `${URLS.BASE_URL}${url}&app_id=${APP_ID}&app_key=${APP_KEY}&${args && args.join("&")}`;
+		return `${URLS.BASE_URL}${url}&${args && args.join("&")}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 	};
 
 	protected request = async <T extends object>(info: RequestInfo, init?: RequestInit): Promise<T | null> => {
@@ -43,17 +43,21 @@ class DataFetcher {
 
 class FoodDbFetcher extends DataFetcher {
 	protected createUrl = (url: string, ...args: string[]): string => {
-		return `${URLS.BASE_URL}${url}&app_id=${APP_ID_FOOD}&app_key=${APP_KEY_FOOD}&${args && args.join("&")}`;
+		return `${URLS.BASE_URL}${url}&${args && args.join("&")}&app_id=${APP_ID_FOOD}&app_key=${APP_KEY_FOOD}`;
 	};
 }
 
 class NutrientAnalysisFetcher extends DataFetcher {
 	protected createUrl = (url: string): string => {
-		return `${URLS.BASE_URL}${url}?app_id=${APP_ID_NUTRITION}&app_key=${APP_KEY_NUTRITION}`;
+		return `${URLS.BASE_URL}${url}&app_id=${APP_ID_NUTRITION}&app_key=${APP_KEY_NUTRITION}`;
 	};
 
-	public postRecipeData = async <T extends object>(url: string, recipeData: RecipeParamsBody, init?: RequestInit): Promise<T | null> => {
-		const defaultUrl = this.createUrl(url);
+	protected createPostUrl = (): string => {
+		return `${URLS.BASE_URL}${URLS.NUTRITION_DETAILS}?app_id=${APP_ID_NUTRITION}&app_key=${APP_KEY_NUTRITION}`;
+	};
+
+	public postRecipeData = async <T extends object>(recipeData: RecipeParamsBody, init?: RequestInit): Promise<T | null> => {
+		const defaultUrl = this.createPostUrl();
 		const defaultParams = {
 			method: "POST",
 			headers: {

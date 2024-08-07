@@ -32,6 +32,7 @@ interface Image {
 }
 
 interface Images {
+	LARGE: Image;
 	REGULAR: Image;
 	SMALL: Image;
 	THUMBNAIL: Image;
