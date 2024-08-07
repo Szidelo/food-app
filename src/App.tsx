@@ -5,17 +5,7 @@ import { RecipeItem } from "./utils/interfaces/providers/apiResponse";
 import { helpers } from "./utils/helpers/functions";
 import { foodService } from "./utils/service/FoodDb";
 import { nutrientService } from "./utils/service/Nutrients";
-
-interface RecipeBody {
-	title: string;
-	ingr: string[];
-	url?: string;
-	summary?: string;
-	yield: string;
-	time?: string;
-	img?: string;
-	prep?: string;
-}
+import { RecipeParamsBody } from "./utils/interfaces/items/itemsInterfaces";
 
 function App() {
 	const [data, setData] = useState<RecipeItem[]>([]);
@@ -23,14 +13,20 @@ function App() {
 	const [recipe, setRecipe] = useState<RecipeItem | null>(null);
 
 	const getItemId = (uri: string) => {
+		console.log("URI:", uri);
+
 		const id = helpers.getRecipeIdFromUrl(uri);
 		setRecipeId(id);
 	};
 
 	useEffect(() => {
-		foodService.getFoodByQuery("Crispy Chicken Strips").then((response) => {
-			console.log("Food fetched:", response);
-		});
+		foodService
+			.getFoodByQuery("wings", {
+				brand: "McDonald's",
+			})
+			.then((response) => {
+				console.log("Food fetched:", response);
+			});
 	}, []);
 
 	useEffect(() => {
@@ -50,7 +46,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		const apiBody: RecipeBody = {
+		const apiBody: RecipeParamsBody = {
 			title: "Chicken Salad",
 			ingr: [
 				"2 cups chopped cooked chicken breast",
@@ -70,6 +66,8 @@ function App() {
 
 	useEffect(() => {
 		if (recipeId) {
+			console.log("Fetching recipe:", recipeId);
+
 			recipeService
 				.getRecipeById(recipeId)
 				.then((response) => {

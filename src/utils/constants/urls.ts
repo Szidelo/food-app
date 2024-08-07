@@ -4,5 +4,6 @@ export const URLS = {
 	SEARCH_ID: "api/recipes/v2/",
 	TYPE_ANY: "type=any",
 	TYPE_PUBLIC: "type=public",
-	FOOD_DB: "api/food-database/v2/parser?",
+	FOOD_DB: "api/food-database/v2/parser",
+	NUTRITION: "/api/nutrition-details",
 };

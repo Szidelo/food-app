@@ -13,6 +13,7 @@ class Recipe extends DataFetcher {
 			Object.entries(options).forEach(([key, value]) => {
 				if (value) {
 					params.append(key, value);
+					console.log("params recipe:", params);
 				}
 			});
 		}

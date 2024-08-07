@@ -1,4 +1,5 @@
 import { URLS } from "../constants/urls";
+import { RecipeParamsBody } from "../interfaces/items/itemsInterfaces";
 
 const APP_ID = import.meta.env.VITE_APP_API_RECIPE_ID;
 const APP_KEY = import.meta.env.VITE_APP_API_RECIPE_KEY;
@@ -51,9 +52,9 @@ class NutrientAnalysisFetcher extends DataFetcher {
 		return `${URLS.BASE_URL}${url}?app_id=${APP_ID_NUTRITION}&app_key=${APP_KEY_NUTRITION}`;
 	};
 
-	public analyzeRecipe = async (recipeData: object): Promise<any> => {
-		const url = this.createUrl("/api/nutrition-details");
-		const params = {
+	public postRecipeData = async <T extends object>(url: string, recipeData: RecipeParamsBody, init?: RequestInit): Promise<T | null> => {
+		const defaultUrl = this.createUrl(url);
+		const defaultParams = {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -62,10 +63,12 @@ class NutrientAnalysisFetcher extends DataFetcher {
 			body: JSON.stringify(recipeData),
 		};
 
-		const finalUrl = this.request<any>(url, params);
-		console.log("Final URL:", finalUrl);
+		const response = await fetch(defaultUrl, {
+			...defaultParams,
+			...init,
+		});
 
-		return this.request<any>(url, params);
+		return this.handleResponse<T>(response);
 	};
 }
 
