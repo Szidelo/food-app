@@ -31,7 +31,7 @@ function App() {
 
 	useEffect(() => {
 		recipeService
-			.getRecipesByQuery("chicken", {
+			.getRecipesByQuery("", {
 				mealType: "Breakfast",
 				cuisineType: "Mexican",
 				health: "alcohol-free",
@@ -72,8 +72,6 @@ function App() {
 
 	useEffect(() => {
 		if (recipeId) {
-			console.log("Fetching recipe:", recipeId);
-
 			recipeService
 				.getRecipeById(recipeId)
 				.then((response) => {
@@ -93,7 +91,7 @@ function App() {
 	return (
 		<>
 			<ul>
-				{recipe && (
+				{recipe ? (
 					<li>
 						<h2>{recipe.label}</h2>
 						<p>{recipe.source}</p>
@@ -102,6 +100,10 @@ function App() {
 								<li key={index}>{ingredient}</li>
 							))}
 						</ul>
+					</li>
+				) : (
+					<li>
+						<h1>Please select a recipe to see nutrients</h1>
 					</li>
 				)}
 			</ul>
