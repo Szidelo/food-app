@@ -6,11 +6,32 @@ import { helpers } from "./utils/helpers/functions";
 import { foodService } from "./utils/service/FoodDb";
 import { nutrientService } from "./utils/service/Nutrients";
 import { RecipeParamsBody } from "./utils/interfaces/items/itemsInterfaces";
+import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
+import { incrementBy, decrement, reset } from "./redux/slices/counterSlice";
+import { useFetchBreedsQuery } from "./redux/slices/breedApi";
 
 function App() {
-	const [data, setData] = useState<RecipeItem[]>([]);
+	const [recipes, setRecipes] = useState<RecipeItem[]>([]);
 	const [recipeId, setRecipeId] = useState<string>("");
 	const [recipe, setRecipe] = useState<RecipeItem | null>(null);
+	const [numDogs, setNumDogs] = useState<number>(10);
+
+	const { data = [] } = useFetchBreedsQuery(numDogs);
+
+	const count = useAppSelector((state) => state.counter.value);
+	const dispatch = useAppDispatch();
+
+	const handleIncrement = (num: number) => {
+		dispatch(incrementBy(num));
+	};
+
+	const handleDecrement = () => {
+		dispatch(decrement());
+	};
+
+	const handleReset = () => {
+		dispatch(reset());
+	};
 
 	const getItemId = (uri: string) => {
 		console.log("URI:", uri);
@@ -37,8 +58,8 @@ function App() {
 				health: "alcohol-free",
 			})
 			.then((response) => {
-				setData(response);
-				console.log("Data fetched:", response);
+				setRecipes(response);
+				console.log("recipes fetched:", response);
 			})
 			.catch((error) => {
 				console.error(error);
@@ -85,11 +106,41 @@ function App() {
 	}, [recipeId]);
 
 	useEffect(() => {
-		console.log("Data updated:", data);
-	}, [data]);
+		console.log("recipes updated:", recipes);
+	}, [recipes]);
 
 	return (
 		<>
+			<div className="counter">
+				<h1>Counter</h1>
+				<h2>{count}</h2>
+				<div className="counter-buttons">
+					<button onClick={() => handleIncrement(5)}>Increment</button>
+					<button onClick={handleDecrement}>Decrement</button>
+					<button onClick={handleReset}>Reset</button>
+				</div>
+			</div>
+			<div>
+				<div>
+					<h4>Number of dogs to fetch:</h4>
+					<select value={numDogs} onChange={(e) => setNumDogs(+e.target.value)}>
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+					</select>
+				</div>
+				<h3>Number of dogs fetched: {data.length}</h3>
+				{data.map((item) => {
+					console.log("Item:", item);
+
+					return (
+						<div key={item.id}>
+							<h2>{item.name}</h2>
+						</div>
+					);
+				})}
+			</div>
 			<ul>
 				{recipe ? (
 					<li>
@@ -108,7 +159,7 @@ function App() {
 				)}
 			</ul>
 			<ul>
-				{data.map((item) => {
+				{recipes.map((item) => {
 					const { label, image, source, uri } = item;
 					return (
 						<li key={uri} onClick={() => getItemId(uri)}>
