@@ -1,10 +1,28 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
-import { useAppSelector } from "../redux/hooks/hooks";
+import { useDispatch } from "react-redux";
+import AuthService from "../utils/service/AuthService";
 
 function Card() {
-	const user = useAppSelector((state) => state.auth.user);
-	return <>{user ? <p>{user.email}</p> : <p>Not logged in</p>}</>;
+	const dispatch = useDispatch();
+	const user = new AuthService(dispatch).getUserProfile();
+	console.log("user saved in redux:", user);
+	return (
+		<div className="user-card">
+			{user ? (
+				<div className="card-info">
+					<div>
+						<h2>Hello {user.displayName}</h2>
+						<p>{user.email}</p>
+					</div>
+					<div className="card-img">
+						<img src={user.photoURL || undefined} alt="user" />
+					</div>
+				</div>
+			) : (
+				<p>No user</p>
+			)}
+		</div>
+	);
 }
 
 export default Card;

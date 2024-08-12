@@ -1,51 +1,34 @@
-import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/hooks/hooks";
-import { login, logout } from "../../redux/slices/authSlice";
 import Card from "../../components/Card";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthForm, authFormSchema } from "../../utils/helpers/form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/Firebase";
+import AuthService from "../../utils/service/AuthService";
+import { useDispatch } from "react-redux";
+
+export type AuthType = "login" | "signup";
 
 function Auth() {
-	const [authType, setAuthType] = useState<"login" | "signup">("login");
+	const [authType, setAuthType] = useState<AuthType>("login");
 
 	const user = useAppSelector((state) => state.auth.user);
-	console.log("user", user);
 
 	const dispatch = useDispatch();
+	const authServ = new AuthService(dispatch);
 
-	const handleFormSubmit = async (data: AuthForm) => {
-		const userAuth = auth;
-
-		try {
-			if (authType === "signup") {
-				const userCredential = await createUserWithEmailAndPassword(userAuth, data.email, data.password);
-				const user = userCredential.user;
-				console.log("user created", user);
-			} else if (authType === "login") {
-				const userCredential = await signInWithEmailAndPassword(userAuth, data.email, data.password);
-				const user = userCredential.user;
-				console.log("user logged in", user);
-			}
-			dispatch(login({ email: data.email, password: data.password }));
-			reset();
-		} catch (error) {
-			console.error(error);
-		}
+	const handleFormSubmit: SubmitHandler<AuthForm> = async (data) => {
+		await authServ.handleSubmit(data, authType);
+		reset();
 	};
 
 	const handleAuthType = () => {
 		setAuthType((prevAuthType) => (prevAuthType === "login" ? "signup" : "login"));
 	};
 
-	const handleSignOut = () => {
-		const userAuth = auth;
-		userAuth.signOut();
-		dispatch(logout());
+	const handleSignOut = async () => {
+		await authServ.handleLogout();
 	};
 
 	const {

@@ -8,7 +8,8 @@ export interface RecipeHit {
 export interface User {
 	email: string;
 	password: string;
-	picture?: string | null;
+	picture?: string;
+	name?: string;
 }
 
 export interface RecipeQueryOptions {
@@ -31,4 +32,9 @@ export interface RecipeParamsBody {
 	time?: string;
 	img?: string;
 	prep?: string;
+}
+
+export interface UserData {
+	displayName: string;
+	photoURL: string;
 }
