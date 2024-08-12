@@ -12,6 +12,9 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+* {
+	transition: all 0.3s ease;
+}
 
 a {
 	font-weight: 500;
@@ -30,6 +33,17 @@ body {
 	min-height: 100vh;
 }
 
+.auth {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 30px 15px;
+	border-radius: 10px;
+	box-shadow: 0 0 7px 5px rgba(0, 0, 0, 0.1);
+}
+
 h1 {
 	font-size: 3.2em;
 	line-height: 1.1;
@@ -44,10 +58,10 @@ button {
 	font-family: inherit;
 	background-color: #1a1a1a;
 	cursor: pointer;
-	transition: border-color 0.25s;
 }
 button:hover {
-	border-color: #646cff;
+	background-color: #1a1a1a;
+	color: #fff;
 }
 button:focus,
 button:focus-visible {

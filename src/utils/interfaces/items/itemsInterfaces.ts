@@ -5,6 +5,12 @@ export interface RecipeHit {
 	recipe: RecipeItem;
 }
 
+export interface User {
+	email: string;
+	password: string;
+	picture?: string | null;
+}
+
 export interface RecipeQueryOptions {
 	mealType?: string;
 	cuisineType?: string;

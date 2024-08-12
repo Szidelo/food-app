@@ -14,6 +14,47 @@
 	display: flex;
 	justify-content: space-around;
 }
+form {
+	width: 100%;
+}
+
+.form-error {
+	color: red;
+	font-size: 12px;
+	margin: 0;
+	text-align: left;
+}
+
+.form-control {
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0;
+	width: 100%;
+}
+
+.form-control label {
+	text-align: left;
+}
+.form-control input {
+	text-align: left;
+	padding: 0.5em;
+	border-radius: 5px;
+	border: 1px solid #000;
+}
+
+.input-error {
+	border-color: red !important;
+}
+.w-full {
+	width: 100%;
+}
+
+.form-options {
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
 
 .logo {
 	height: 6em;
