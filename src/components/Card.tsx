@@ -1,21 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useDispatch } from "react-redux";
-import AuthService from "../utils/service/AuthService";
+import { useAppSelector } from "../redux/hooks/hooks";
 
 function Card() {
-	const dispatch = useDispatch();
-	const user = new AuthService(dispatch).getUserProfile();
+	const reduxUser = useAppSelector((state) => state.auth.user);
 
 	return (
 		<div className="user-card">
-			{user ? (
+			{reduxUser ? (
 				<div className="card-info">
 					<div>
-						<h2>Hello {user.displayName}</h2>
-						<p>{user.email}</p>
+						<h2>Hello {reduxUser.name}</h2>
+						<p>{reduxUser.email}</p>
 					</div>
 					<div className="card-img">
-						<img src={user.photoURL || undefined} alt="user" />
+						<img src={reduxUser.picture || undefined} alt="user" />
 					</div>
 				</div>
 			) : (

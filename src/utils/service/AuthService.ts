@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import { AuthType } from "../../pages/Auth/Auth";
-import { login, logout, update } from "../../redux/slices/authSlice";
+import { login, logout, setToken, update } from "../../redux/slices/authSlice";
 import { AuthForm } from "../helpers/form";
 import { AppDispatch } from "../../redux/store/store";
 import { User, UserData } from "../interfaces/items/itemsInterfaces";
@@ -9,6 +9,15 @@ import { User, UserData } from "../interfaces/items/itemsInterfaces";
 class AuthService {
 	constructor(protected dispatch: AppDispatch, protected userAuth = auth) {
 		this.dispatch = dispatch;
+	}
+
+	async getUserToken() {
+		const user = this.getUser();
+		if (user) {
+			const token = await user.getIdToken();
+			return token;
+		}
+		return null;
 	}
 
 	async handleSubmit(data: AuthForm, authType: AuthType) {
@@ -20,9 +29,11 @@ class AuthService {
 			} else if (authType === "login") {
 				const userCredential = await signInWithEmailAndPassword(this.userAuth, data.email, data.password);
 				const user = userCredential.user;
+				this.dispatch(
+					login({ email: data.email, password: data.password, name: user.displayName || "", picture: user.photoURL || "" })
+				);
 				console.log("user logged in", user);
 			}
-			this.dispatch(login({ email: data.email, password: data.password }));
 		} catch (error) {
 			console.error(error);
 		}
@@ -39,12 +50,14 @@ class AuthService {
 	}
 
 	async handleAuthStateChange(currentUser: User | null) {
-		this.userAuth.onAuthStateChanged((user) => {
+		this.userAuth.onAuthStateChanged(async (user) => {
 			if (user) {
 				if (user.email?.toLowerCase() === currentUser?.email?.toLowerCase()) {
 					console.log("user already logged in", user);
 				}
-				this.dispatch(login({ email: user.email || "", password: "" }));
+
+				this.dispatch(login({ email: user.email || "", password: "", name: user.displayName || "", picture: user.photoURL || "" }));
+				this.dispatch(setToken((await this.getUserToken()) || ""));
 				console.log("user state", user);
 			} else {
 				console.log("no user");
