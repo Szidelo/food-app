@@ -17,9 +17,6 @@ function App() {
 		// eslint-disable-next-line
 	}, []);
 
-	const userProfile = authServ.getUserProfile();
-	console.log("userProfile", userProfile);
-
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
