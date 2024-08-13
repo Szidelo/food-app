@@ -5,7 +5,7 @@ import AuthService from "../utils/service/AuthService";
 function Card() {
 	const dispatch = useDispatch();
 	const user = new AuthService(dispatch).getUserProfile();
-	console.log("user saved in redux:", user);
+
 	return (
 		<div className="user-card">
 			{user ? (

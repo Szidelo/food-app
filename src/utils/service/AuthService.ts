@@ -90,6 +90,7 @@ class AuthService {
 			const token = user.getIdToken();
 			return { email, displayName, photoURL, token, phoneNumber, uid };
 		}
+		return null;
 	}
 }
 
