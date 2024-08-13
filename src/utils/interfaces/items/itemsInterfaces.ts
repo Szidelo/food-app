@@ -7,9 +7,9 @@ export interface RecipeHit {
 
 export interface User {
 	email: string;
-	password: string;
 	picture?: string;
 	name?: string;
+	id: string;
 }
 
 export interface RecipeQueryOptions {

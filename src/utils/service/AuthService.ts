@@ -29,9 +29,7 @@ class AuthService {
 			} else if (authType === "login") {
 				const userCredential = await signInWithEmailAndPassword(this.userAuth, data.email, data.password);
 				const user = userCredential.user;
-				this.dispatch(
-					login({ email: data.email, password: data.password, name: user.displayName || "", picture: user.photoURL || "" })
-				);
+				this.dispatch(login({ email: data.email, name: user.displayName || "", picture: user.photoURL || "", id: user.uid }));
 				console.log("user logged in", user);
 			}
 		} catch (error) {
@@ -56,7 +54,7 @@ class AuthService {
 					console.log("user already logged in", user);
 				}
 
-				this.dispatch(login({ email: user.email || "", password: "", name: user.displayName || "", picture: user.photoURL || "" }));
+				this.dispatch(login({ email: user.email || "", name: user.displayName || "", picture: user.photoURL || "", id: user.uid }));
 				this.dispatch(setToken((await this.getUserToken()) || ""));
 				console.log("user state", user);
 			} else {
@@ -80,7 +78,7 @@ class AuthService {
 			const { displayName: name, photoURL: picture } = data;
 			try {
 				await updateProfile(user, { displayName: name, photoURL: picture });
-				this.dispatch(update({ email: user.email || "", password: "", name, picture }));
+				this.dispatch(update({ email: user.email || "", name, picture, id: user.uid }));
 			} catch (error) {
 				console.error("Update user name error:", error);
 			}
