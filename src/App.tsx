@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import AuthService from "./utils/service/AuthService";
 import { useAppSelector } from "./redux/hooks/hooks";
+import DbTestPage from "./pages/TestPage/DbTestPage";
 
 function App() {
 	const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
 			<Route path="/" element={<Home />} />
 			<Route path="test-page" element={<TestPage />} />
 			<Route path="auth" element={<Auth />} />
+			<Route path="db" element={<DbTestPage />} />
 		</Routes>
 	);
 }

@@ -6,12 +6,16 @@ function Home() {
 		<div>
 			<h1>Home</h1>
 			<Card />
+			<br />
 			<div>
 				<Link to="/test-page">
 					<button>Test Page</button>
 				</Link>
 				<Link to="/auth">
 					<button>Authentication</button>
+				</Link>
+				<Link to="/db">
+					<button>Data</button>
 				</Link>
 			</div>
 		</div>

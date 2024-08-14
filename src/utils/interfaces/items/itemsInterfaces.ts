@@ -38,3 +38,9 @@ export interface UserData {
 	displayName: string;
 	photoURL: string;
 }
+
+export interface FirestoreData {
+	title: string;
+	uri: string;
+	image: string;
+}
