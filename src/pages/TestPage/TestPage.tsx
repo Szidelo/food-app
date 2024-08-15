@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks/hooks";
 import { useFetchBreedsQuery } from "../../redux/slices/breedApi";
 import { incrementBy, decrement, reset } from "../../redux/slices/counterSlice";
-import { helpers } from "../../utils/helpers/functions";
+import { helpers } from "../../utils/helpers/Functions";
 import { RecipeParamsBody } from "../../utils/interfaces/items/itemsInterfaces";
 import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 import { foodService } from "../../utils/service/FoodDb";

@@ -2,7 +2,7 @@ import { useAppSelector } from "../../redux/hooks/hooks";
 import Card from "../../components/Card";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { AuthForm, authFormSchema } from "../../utils/helpers/form";
+import { AuthForm, authFormSchema } from "../../utils/helpers/Form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import AuthService from "../../utils/service/AuthService";

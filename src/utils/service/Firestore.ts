@@ -4,7 +4,7 @@ import { addDoc, collection, deleteDoc, getDocs } from "firebase/firestore";
 import { User } from "../interfaces/items/itemsInterfaces";
 
 class FirestoreService {
-	async addRecipeToDb(recipe: RecipeItem, user: User | null) {
+	async addRecipeToDb(recipe: RecipeItem, user: User | null): Promise<void> {
 		try {
 			if (user && recipe) {
 				const { label, uri, image } = recipe;

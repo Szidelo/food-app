@@ -3,7 +3,7 @@ import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 import { recipeService } from "../../utils/service/Rceipe";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { firestoreService } from "../../utils/service/Firestore";
-import { helpers } from "../../utils/helpers/functions";
+import { helpers } from "../../utils/helpers/Functions";
 import { FirestoreData } from "../../utils/interfaces/items/itemsInterfaces";
 
 function DbTestPage() {
@@ -74,6 +74,7 @@ function DbTestPage() {
 					{recipes.map((recipe) => (
 						<div key={recipe.uri} onClick={() => addToDb(recipe)}>
 							<h2>{recipe.label}</h2>
+							{selectedRecipe && <p>Added {selectedRecipe.label} to database</p>}
 							<img src={recipe.image} alt={recipe.label} />
 						</div>
 					))}
@@ -81,7 +82,6 @@ function DbTestPage() {
 			) : (
 				<p>No recipes found</p>
 			)}
-			{selectedRecipe && <p>Added {selectedRecipe.label} to database</p>}
 		</div>
 	);
 }

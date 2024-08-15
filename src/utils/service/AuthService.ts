@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswor
 import { auth } from "../../firebase/Firebase";
 import { AuthType } from "../../pages/Auth/Auth";
 import { login, logout, setToken, update } from "../../redux/slices/authSlice";
-import { AuthForm } from "../helpers/form";
+import { AuthForm } from "../helpers/Form";
 import { AppDispatch } from "../../redux/store/store";
 import { User, UserData } from "../interfaces/items/itemsInterfaces";
 

@@ -17,6 +17,9 @@ function Home() {
 				<Link to="/db">
 					<button>Data</button>
 				</Link>
+				<Link to="/bmi">
+					<button>Bmi</button>
+				</Link>
 			</div>
 		</div>
 	);
