@@ -1,73 +1,95 @@
 import { useState } from "react";
-import { Gender, healthCalculator } from "../../utils/helpers/Health";
-import { GENDER } from "../../utils/constants/bmi";
+import { HealthData } from "../../utils/interfaces/items/itemsInterfaces";
+import { firestoreService } from "../../utils/service/Firestore";
+import { useAppSelector } from "../../redux/hooks/hooks";
 
 function TestBmi() {
-	const [bmi, setBmi] = useState<number | null>(null);
-	const [bmr, setBmr] = useState<number | null>(null);
-	const [bmiCat, setBmiCat] = useState<string>("");
-	const [height, setHeight] = useState<string>("");
-	const [weight, setWeight] = useState<string>("");
-	const [age, setAge] = useState<string>("");
-	const [gender, setGender] = useState<Gender>("male");
+	const [healthData, setHealthData] = useState<HealthData | null>(null);
+	const [isSaved, setIsSaved] = useState<boolean>(false);
+	const user = useAppSelector((state) => state.auth.user);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		if (name === "height") {
-			setHeight(value);
-		} else if (name === "weight") {
-			setWeight(value);
-		} else if (name === "age") {
-			setAge(value);
+	const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
+		setIsSaved(false);
+		e.preventDefault();
+		const weight = parseFloat(e.currentTarget.weight.value);
+		const height = parseFloat(e.currentTarget.height.value);
+		const age = parseFloat(e.currentTarget.age.value);
+		const gender = e.currentTarget.gender.value;
+		const activityLevel = e.currentTarget.activity.value;
+
+		const newHealthData = {
+			weight,
+			height,
+			age,
+			gender,
+			activityLevel,
+		};
+
+		setHealthData(newHealthData);
+
+		if (user) {
+			if (!healthData) {
+				await firestoreService.saveInitialHealthDataToDb(user, newHealthData);
+			} else {
+				await firestoreService.saveUpdatedHealthDataToDb(user, newHealthData);
+			}
+			setIsSaved(true);
 		}
 	};
 
-	const handleGender = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		setGender(e.target.value as Gender);
-	};
+	const handleCheck = () => {
+		firestoreService.getInitialHealthData(user).then((res) => {
+			console.log(res);
+		});
 
-	const handleBmi = (height: string, weight: string) => {
-		const bmi = healthCalculator.calculateBmi(+weight, +height);
-		const bmiCategory = healthCalculator.classifyBMI(bmi);
-		setBmi(bmi);
-		setBmiCat(bmiCategory);
-	};
-
-	const handleBmr = () => {
-		const result = healthCalculator.calculateBmr(+weight, +height, +age, gender);
-		setBmr(result);
+		firestoreService.getHealthDataUpdates(user).then((res) => {
+			console.log(res?.docs.map((doc) => doc.data()));
+		});
 	};
 
 	return (
-		<div>
-			<div>
-				<h1>BMI Calculator</h1>
-				<p>Enter your weight and height to calculate your BMI</p>
-				<input type="number" placeholder="Enter your weight in kg" name="weight" onChange={handleChange} value={weight} />
-				<input type="number" placeholder="Enter your height in cm" name="height" onChange={handleChange} value={height} />
-				<button onClick={() => handleBmi(height, weight)}>Calculate</button>
-			</div>
-			<div>
-				<h2>Your BMI is: </h2>
-				<p>Your bmi is: {bmi}</p>
-				<p>You are: {bmiCat}</p>
-			</div>
-			<div>
-				<h1>BMR Calculator</h1>
-				<p>Enter your weight, height, age and gender to calculate your BMR</p>
-				<input type="number" placeholder="Enter your weight in kg" name="weight" onChange={handleChange} value={weight} />
-				<input type="number" placeholder="Enter your height in cm" name="height" onChange={handleChange} value={height} />
-				<input type="number" placeholder="Enter your age" name="age" onChange={handleChange} value={age} />
-				<select onChange={handleGender}>
-					<option value={"choose gender"}>Choose Gender</option>
-					<option value={GENDER.MALE}>Male</option>
-					<option value={GENDER.FEMALE}>Female</option>
-				</select>
-				<button onClick={handleBmr}>Calculate</button>
-			</div>
-			<div>
-				<h3>Your bmr is: {bmr}</h3>
-			</div>
+		<div className="health__container">
+			<h2>Please provide info</h2>
+			<form onSubmit={handleSave} className="health__form">
+				<div className="form-top">
+					<div className="form-control-sm">
+						<label htmlFor="weight">Weight</label>
+						<input type="number" name="weight" placeholder="weight in kg..." />
+					</div>
+					<div className="form-control-sm">
+						<label htmlFor="height">Height</label>
+						<input type="number" name="height" placeholder="height in cm..." />
+					</div>
+					<div className="form-control-sm">
+						<label htmlFor="age">Age</label>
+						<input type="number" name="age" placeholder="age..." />
+					</div>
+				</div>
+				<div className="form-select">
+					<div className="form-control-md">
+						<select name="gender">
+							<option value="">Choose gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+					<div className="form-control-md">
+						<select name="activity">
+							<option value="">Choose activity level</option>
+							<option value="sedentary">Sedentary</option>
+							<option value="light">Light</option>
+							<option value="moderate">Moderate</option>
+							<option value="active">Active</option>
+							<option value="very_active">Very active</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<button type="submit">Save</button>
+				</div>
+			</form>
+
+			<button onClick={handleCheck}>Check Saved Data</button>
 		</div>
 	);
 }

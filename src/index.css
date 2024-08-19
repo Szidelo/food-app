@@ -108,6 +108,70 @@ img {
 	object-fit: cover;
 }
 
+.health__container {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.health__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 30px 15px;
+	border-radius: 10px;
+	box-shadow: 0 0 7px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-top {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.form-control-sm {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 10px;
+}
+
+.form-control-sm label {
+	text-align: left;
+	margin-bottom: 5px;
+}
+.form-control-sm input {
+	text-align: left;
+	padding: 0.5em;
+	border-radius: 5px;
+	border: 1px solid #000;
+}
+
+.form-select {
+	display: flex;
+	padding: 20px 10px;
+}
+
+.form-control-md {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 10px;
+}
+
+.form-select select {
+	padding: 0.5em;
+	border-radius: 5px;
+	border: 1px solid #000;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;

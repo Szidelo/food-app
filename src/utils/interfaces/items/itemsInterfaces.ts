@@ -1,3 +1,4 @@
+import { Gender } from "../../helpers/Health";
 import { RecipeItem } from "../providers/apiResponse";
 // use export interface
 // these are the interfaces for the items that we will use in the app components
@@ -43,4 +44,12 @@ export interface FirestoreData {
 	title: string;
 	uri: string;
 	image: string;
+}
+
+export interface HealthData {
+	weight: number;
+	height: number;
+	age: number;
+	gender: Gender;
+	activityLevel: string;
 }
