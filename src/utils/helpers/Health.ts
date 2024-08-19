@@ -1,13 +1,15 @@
-import { BMI_CATEGORY } from "../constants/bmi";
+import { BMI_CATEGORY, GENDER } from "../constants/bmi";
+
+export type Gender = "male" | "female";
 
 class HealthCalculator {
-	calculateBmi(weight: number, height: number): number {
+	public calculateBmi(weight: number, height: number): number {
 		const heightInMeters = height / 100;
-		const result = (weight / (heightInMeters * heightInMeters)).toFixed(2);
-		return +result;
+		const bmi = weight / (heightInMeters * heightInMeters);
+		return parseFloat(bmi.toFixed(2));
 	}
 
-	determineBmiCategory(bmi: number): string {
+	public classifyBMI(bmi: number): string {
 		switch (true) {
 			case bmi <= 18.5:
 				return BMI_CATEGORY.UNDERWEIGHT;
@@ -22,6 +24,18 @@ class HealthCalculator {
 			default:
 				return BMI_CATEGORY.OBESITY_CLASS_3;
 		}
+	}
+
+	public calculateBmr(weight: number, height: number, age: number, gender: Gender) {
+		let bmr: number;
+
+		if (gender === GENDER.MALE) {
+			bmr = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+		} else {
+			bmr = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+		}
+
+		return parseFloat(bmr.toFixed(2));
 	}
 }
 

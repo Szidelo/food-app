@@ -6,3 +6,8 @@ export const BMI_CATEGORY = {
 	OBESITY_CLASS_2: "Obesity class 2",
 	OBESITY_CLASS_3: "Obesity class 3",
 };
+
+export const GENDER = {
+	MALE: "male",
+	FEMALE: "female",
+};
