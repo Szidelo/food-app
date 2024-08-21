@@ -38,6 +38,7 @@ export interface RecipeParamsBody {
 export interface UserData {
 	displayName: string;
 	photoURL: string;
+	email: string;
 }
 
 export interface FirestoreData {

@@ -1,10 +1,10 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
-import { AuthType } from "../../pages/Auth/Auth";
 import { login, logout, setToken, update } from "../../redux/slices/authSlice";
-import { AuthForm } from "../helpers/Form";
+import { AuthFormSignIn, AuthFormSignUp } from "../helpers/Form";
 import { AppDispatch } from "../../redux/store/store";
 import { User, UserData } from "../interfaces/items/itemsInterfaces";
+import { firestoreService } from "./Firestore";
 
 class AuthService {
 	constructor(protected dispatch: AppDispatch, protected userAuth = auth) {
@@ -20,22 +20,39 @@ class AuthService {
 		return null;
 	}
 
-	async handleSubmit(data: AuthForm, authType: AuthType): Promise<void> {
+	async handleSignIn(data: AuthFormSignIn): Promise<void> {
 		const { email, password } = data;
 		try {
-			if (authType === "signup") {
-				const userCredential = await createUserWithEmailAndPassword(this.userAuth, email, password);
-				const user = userCredential.user;
-				console.log("user created", user);
-			} else if (authType === "login") {
-				const userCredential = await signInWithEmailAndPassword(this.userAuth, email, password);
-				const user = userCredential.user;
-				const { displayName, photoURL, uid } = user;
-				this.dispatch(login({ email: email, name: displayName || "", picture: photoURL || "", id: uid }));
-				console.log("user logged in", user);
-			}
+			const userCredential = await signInWithEmailAndPassword(this.userAuth, email, password);
+			const user = userCredential.user;
+			const { displayName, photoURL, uid } = user;
+			this.dispatch(login({ email: email, name: displayName || "", picture: photoURL || "", id: uid }));
+			console.log("user logged in", user);
 		} catch (error) {
 			console.error(error);
+		}
+	}
+
+	async handleSignUp(data: AuthFormSignUp): Promise<void> {
+		const { email, password, name } = data;
+		try {
+			const userCredential = await createUserWithEmailAndPassword(this.userAuth, email, password);
+			const user = userCredential.user;
+
+			await updateProfile(user, { displayName: name });
+
+			const { displayName, photoURL, uid } = user;
+
+			this.dispatch(login({ email: email, name: displayName || "", picture: photoURL || "", id: uid }));
+
+			await firestoreService.saveUserDataToDb(
+				{ email, name: displayName || "", picture: photoURL || "", id: uid },
+				{ displayName: displayName || "", photoURL: photoURL || "", email: email }
+			);
+
+			console.log("User created and profile updated", user);
+		} catch (error) {
+			console.error("Error during sign up:", error);
 		}
 	}
 

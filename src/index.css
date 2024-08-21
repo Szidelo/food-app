@@ -178,6 +178,18 @@ img {
 	object-fit: cover;
 }
 
+.link-btn {
+	background-color: transparent;
+	border: none;
+	color: #646cff;
+}
+
+.link-btn:hover {
+	background-color: transparent;
+	border: none;
+	color: #535bf2;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;

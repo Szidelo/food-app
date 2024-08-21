@@ -1,7 +1,8 @@
 import * as yup from "yup";
 
-export const authFormSchema = yup.object().shape({
+export const signUpFormSchema = yup.object().shape({
 	email: yup.string().email("Please provide a valid email address").required("Email is required"),
+	name: yup.string().min(2, "Name must be at least 2 characters").required("Name is required"),
 	password: yup
 		.string()
 		.min(4, "Password must be at least 4 characters")
@@ -13,8 +14,19 @@ export const authFormSchema = yup.object().shape({
 		.required("Password confirmation is required"),
 });
 
-export interface AuthForm {
+export interface AuthFormSignUp {
 	email: string;
+	name: string;
 	password: string;
 	confirmPassword: string;
+}
+
+export const signInFormSchema = yup.object().shape({
+	email: yup.string().email("Please provide a valid email address").required("Email is required"),
+	password: yup.string().required("Password is required"),
+});
+
+export interface AuthFormSignIn {
+	email: string;
+	password: string;
 }
