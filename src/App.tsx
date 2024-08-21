@@ -9,6 +9,7 @@ import AuthService from "./utils/service/AuthService";
 import { useAppSelector } from "./redux/hooks/hooks";
 import DbTestPage from "./pages/TestPage/DbTestPage";
 import TestBmi from "./pages/TestPage/TestBmi";
+import EditUser from "./pages/Auth/EditUser";
 
 function App() {
 	const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
 			<Route path="auth" element={<Auth />} />
 			<Route path="db" element={<DbTestPage />} />
 			<Route path="bmi" element={<TestBmi />} />
+			<Route path="user" element={<EditUser />} />
 		</Routes>
 	);
 }

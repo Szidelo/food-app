@@ -51,7 +51,7 @@ class FirestoreService {
 
 	async saveUserDataToDb(user: User, userData: UserData): Promise<void> {
 		try {
-			const docRef = doc(db, "users", user.id, "userData", "contactInFo");
+			const docRef = doc(db, "users", user.id, "userData", "contactInfo");
 			await setDoc(docRef, userData);
 			console.log("User data saved to Firestore");
 		} catch (error) {

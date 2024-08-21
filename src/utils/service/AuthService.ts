@@ -97,10 +97,16 @@ class AuthService {
 		if (user) {
 			const { displayName: name, photoURL: picture } = data;
 			try {
-				await updateProfile(user, { displayName: name, photoURL: picture });
 				this.dispatch(update({ email: user.email || "", name, picture, id: user.uid }));
+
+				await firestoreService.saveUserDataToDb(
+					{ email: user.email || "", name, picture, id: user.uid },
+					{ displayName: name, photoURL: picture, email: user.email || "" }
+				);
+
+				console.log("User profile and Firestore data updated");
 			} catch (error) {
-				console.error("Update user name error:", error);
+				console.error("Update user data error:", error);
 			}
 		}
 	}

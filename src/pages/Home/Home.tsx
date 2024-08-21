@@ -20,6 +20,9 @@ function Home() {
 				<Link to="/bmi">
 					<button>Bmi</button>
 				</Link>
+				<Link to="/user">
+					<button>Edit User</button>
+				</Link>
 			</div>
 		</div>
 	);
