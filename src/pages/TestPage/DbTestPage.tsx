@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 import { recipeService } from "../../utils/service/Rceipe";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { firestoreService } from "../../utils/service/Firestore";
 import { helpers } from "../../utils/helpers/Functions";
 import { FirestoreData } from "../../utils/interfaces/items/itemsInterfaces";
+import { imageService } from "../../utils/service/UnplashService";
 
 function DbTestPage() {
 	const [recipes, setRecipes] = useState<RecipeItem[]>([]);
@@ -12,6 +13,7 @@ function DbTestPage() {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [selectedRecipe, setSelectedRecipe] = useState<RecipeItem | null>(null);
 	const [data, setData] = useState<FirestoreData[]>([]);
+	const [heroImage, setHeroImage] = useState<string>("");
 
 	const user = useAppSelector((state) => state.auth.user);
 
@@ -48,8 +50,17 @@ function DbTestPage() {
 		if (user) await firestoreService.deleteRecipeFromDb(user, uri);
 	};
 
+	useEffect(() => {
+		if (selectedRecipe) {
+			imageService.fetchImages(selectedRecipe.label).then((res) => {
+				setHeroImage(res.results[0].urls.regular);
+			});
+		}
+	}, [selectedRecipe]);
+
 	return (
 		<div>
+			<div>{heroImage && <img src={heroImage} alt="hero" className="hero" />}</div>
 			<div>
 				<input type="text" placeholder="Enter recipe keyword" onChange={handleChange} value={query} />
 				<button onClick={handleSearch}>Search</button>

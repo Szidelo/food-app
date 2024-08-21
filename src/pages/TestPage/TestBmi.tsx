@@ -89,6 +89,8 @@ function TestBmi() {
 				</div>
 			</form>
 
+			{isSaved && <p>Health data saved successfully</p>}
+
 			<button onClick={handleCheck}>Check Saved Data</button>
 		</div>
 	);

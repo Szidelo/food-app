@@ -68,9 +68,9 @@ class HealthCalculator {
 		const caloricNeeds = this.calculateCaloricNeeds();
 		switch (goal) {
 			case "lose":
-				return caloricNeeds - 500; // Example: Reduce 500 calories/day for weight loss
+				return caloricNeeds - 500;
 			case "gain":
-				return caloricNeeds + 500; // Example: Add 500 calories/day for muscle gain
+				return caloricNeeds + 500;
 			case "maintain":
 			default:
 				return caloricNeeds;

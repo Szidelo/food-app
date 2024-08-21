@@ -172,6 +172,12 @@ img {
 	border: 1px solid #000;
 }
 
+.hero {
+	width: 100vw;
+	height: 700px;
+	object-fit: cover;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;

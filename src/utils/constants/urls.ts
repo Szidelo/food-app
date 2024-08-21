@@ -7,4 +7,6 @@ export const URLS = {
 	FOOD_DB: "api/food-database/v2/parser",
 	NUTRITION_DETAILS: "/api/nutrition-details",
 	NUTRITION_DATA: "/api/nutrition-data",
+	BASE_UNSPLASH_URL: "https://api.unsplash.com/",
+	SEARCH_PHOTOS: "search/photos",
 };
