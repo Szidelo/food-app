@@ -59,15 +59,6 @@ class FirestoreService {
 		}
 	}
 
-	// async saveInitialHealthDataToDb(user: User, healthData: HealthData): Promise<void> {
-	// 	try {
-	// 		const docRef = doc(db, "users", user.id, "healthData", "initialHealthData");
-	// 		await setDoc(docRef, healthData);
-	// 	} catch (error) {
-	// 		console.error("Error saving initial health data to Firestore:", error);
-	// 	}
-	// }
-
 	async saveUpdatedHealthDataToDb(user: User, healthData: HealthData): Promise<void> {
 		try {
 			const date = new Date();
@@ -97,19 +88,6 @@ class FirestoreService {
 			console.error("Error getting health data updates from Firestore:", error);
 		}
 	}
-
-	// async getInitialHealthData(user: User | null): Promise<DocumentData | undefined> {
-	// 	try {
-	// 		if (user) {
-	// 			const healthData = await getDocs(collection(db, "users", user.id, "healthData"));
-	// 			return healthData.docs[0].data();
-	// 		} else {
-	// 			console.error("User is not authenticated");
-	// 		}
-	// 	} catch (error) {
-	// 		console.error("Error getting initial health data from Firestore:", error);
-	// 	}
-	// }
 }
 
 export const firestoreService = new FirestoreService();
