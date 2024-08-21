@@ -9,7 +9,7 @@ class FirestoreService {
 		try {
 			if (user && recipe) {
 				const { label, uri, image } = recipe;
-				await addDoc(collection(db, "users", user.id, "recipes"), {
+				await addDoc(collection(db, "users", user.id, "favoriteRecipes"), {
 					title: label,
 					uri,
 					image,
@@ -25,7 +25,7 @@ class FirestoreService {
 	async getRecipesFromDb(user: User | null) {
 		try {
 			if (user) {
-				const recipes = await getDocs(collection(db, "users", user.id, "recipes"));
+				const recipes = await getDocs(collection(db, "users", user.id, "favoriteRecipes"));
 				return recipes;
 			} else {
 				console.error("User is not authenticated");
@@ -68,33 +68,35 @@ class FirestoreService {
 	// 	}
 	// }
 
-	// async saveUpdatedHealthDataToDb(user: User, healthData: HealthData): Promise<void> {
-	// 	try {
-	// 		const date = new Date();
-	// 		const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+	async saveUpdatedHealthDataToDb(user: User, healthData: HealthData): Promise<void> {
+		try {
+			const date = new Date();
+			const formattedDate = `${date.getDate()}-${
+				date.getMonth() + 1
+			}-${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-	// 		const docRef = doc(db, "users", user.id, "healthDataUpdates", formattedDate);
-	// 		await setDoc(docRef, {
-	// 			...healthData,
-	// 			updatedAt: formattedDate,
-	// 		});
-	// 	} catch (error) {
-	// 		console.error("Error saving updated health data to Firestore:", error);
-	// 	}
-	// }
+			const docRef = doc(db, "users", user.id, "userData", formattedDate);
+			await setDoc(docRef, {
+				...healthData,
+				updatedAt: formattedDate,
+			});
+		} catch (error) {
+			console.error("Error saving updated health data to Firestore:", error);
+		}
+	}
 
-	// async getHealthDataUpdates(user: User | null): Promise<QuerySnapshot<DocumentData, DocumentData> | undefined> {
-	// 	try {
-	// 		if (user) {
-	// 			const updates = await getDocs(collection(db, "users", user.id, "healthDataUpdates"));
-	// 			return updates;
-	// 		} else {
-	// 			console.error("User is not authenticated");
-	// 		}
-	// 	} catch (error) {
-	// 		console.error("Error getting health data updates from Firestore:", error);
-	// 	}
-	// }
+	async getHealthDataUpdates(user: User | null): Promise<QuerySnapshot<DocumentData, DocumentData> | undefined> {
+		try {
+			if (user) {
+				const updates = await getDocs(collection(db, "users", user.id, "healthDataUpdates"));
+				return updates;
+			} else {
+				console.error("User is not authenticated");
+			}
+		} catch (error) {
+			console.error("Error getting health data updates from Firestore:", error);
+		}
+	}
 
 	// async getInitialHealthData(user: User | null): Promise<DocumentData | undefined> {
 	// 	try {

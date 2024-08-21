@@ -28,23 +28,17 @@ function TestBmi() {
 		setHealthData(newHealthData);
 
 		if (user) {
-			if (!healthData) {
-				await firestoreService.saveInitialHealthDataToDb(user, newHealthData);
-			} else {
-				await firestoreService.saveUpdatedHealthDataToDb(user, newHealthData);
-			}
+			await firestoreService.saveUpdatedHealthDataToDb(user, newHealthData);
+
 			setIsSaved(true);
 		}
 	};
 
 	const handleCheck = () => {
-		firestoreService.getInitialHealthData(user).then((res) => {
-			console.log(res);
-		});
-
-		firestoreService.getHealthDataUpdates(user).then((res) => {
-			console.log(res?.docs.map((doc) => doc.data()));
-		});
+		if (healthData)
+			firestoreService.getHealthDataUpdates(user).then((res) => {
+				console.log(res?.docs.map((doc) => doc.data()));
+			});
 	};
 
 	return (
