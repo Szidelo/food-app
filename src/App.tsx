@@ -14,6 +14,7 @@ import EditUser from "./pages/Auth/EditUser";
 function App() {
 	const dispatch = useDispatch();
 	const currentUser = useAppSelector((state) => state.auth.user);
+	const user = useAppSelector((state) => state.auth.user);
 	const authServ = new AuthService(dispatch);
 	useEffect(() => {
 		authServ.handleAuthStateChange(currentUser);
@@ -27,7 +28,7 @@ function App() {
 			<Route path="auth" element={<Auth />} />
 			<Route path="db" element={<DbTestPage />} />
 			<Route path="bmi" element={<TestBmi />} />
-			<Route path="user" element={<EditUser />} />
+			{user && <Route path="user" element={<EditUser />} />}
 		</Routes>
 	);
 }

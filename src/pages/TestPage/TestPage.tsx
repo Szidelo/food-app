@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks/hooks";
-import { useFetchBreedsQuery } from "../../redux/slices/breedApi";
-import { incrementBy, decrement, reset } from "../../redux/slices/counterSlice";
 import { helpers } from "../../utils/helpers/Functions";
 import { RecipeParamsBody } from "../../utils/interfaces/items/itemsInterfaces";
 import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
@@ -15,24 +12,6 @@ function TestPage() {
 	const [recipes, setRecipes] = useState<RecipeItem[]>([]);
 	const [recipeId, setRecipeId] = useState<string>("");
 	const [recipe, setRecipe] = useState<RecipeItem | null>(null);
-	const [numDogs, setNumDogs] = useState<number>(10);
-
-	const { data = [] } = useFetchBreedsQuery(numDogs);
-
-	const count = useAppSelector((state) => state.counter.value);
-	const dispatch = useAppDispatch();
-
-	const handleIncrement = (num: number) => {
-		dispatch(incrementBy(num));
-	};
-
-	const handleDecrement = () => {
-		dispatch(decrement());
-	};
-
-	const handleReset = () => {
-		dispatch(reset());
-	};
 
 	const getItemId = (uri: string) => {
 		console.log("URI:", uri);
@@ -122,34 +101,6 @@ function TestPage() {
 				</Link>
 			</div>
 
-			<div className="counter">
-				<h1>Counter</h1>
-				<h2>{count}</h2>
-				<div className="counter-buttons">
-					<button onClick={() => handleIncrement(5)}>Increment</button>
-					<button onClick={handleDecrement}>Decrement</button>
-					<button onClick={handleReset}>Reset</button>
-				</div>
-			</div>
-			<div>
-				<div>
-					<h4>Number of dogs to fetch:</h4>
-					<select value={numDogs} onChange={(e) => setNumDogs(+e.target.value)}>
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="15">15</option>
-						<option value="20">20</option>
-					</select>
-				</div>
-				<h3>Number of dogs fetched: {data.length}</h3>
-				{data.map((item) => {
-					return (
-						<div key={item.id}>
-							<h2>{item.name}</h2>
-						</div>
-					);
-				})}
-			</div>
 			<ul>
 				{recipe ? (
 					<li>

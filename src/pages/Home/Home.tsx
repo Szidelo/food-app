@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import Card from "../../components/Card";
+import { useAppSelector } from "../../redux/hooks/hooks";
 
 function Home() {
+	const user = useAppSelector((state) => state.auth.user);
 	return (
 		<div>
 			<h1>Home</h1>
@@ -20,9 +22,11 @@ function Home() {
 				<Link to="/bmi">
 					<button>Bmi</button>
 				</Link>
-				<Link to="/user">
-					<button>Edit User</button>
-				</Link>
+				{user && (
+					<Link to="/user">
+						<button>Edit User</button>
+					</Link>
+				)}
 			</div>
 		</div>
 	);
