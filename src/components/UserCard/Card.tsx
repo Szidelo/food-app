@@ -1,18 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useAppSelector } from "../../redux/hooks/hooks";
+import { userCardClasses } from "./userCardClasses";
 
 function Card() {
 	const reduxUser = useAppSelector((state) => state.auth.user);
+	const { container, flexColContainer, flexContainer, image, imageConainer, title } = userCardClasses;
 
 	return (
-		<div className="absolute top-2 right-2 w-60 bg-slate-400 rounded ms-auto py-2 px-6">
+		<div className={container}>
 			{reduxUser ? (
-				<div className="flex justify-between">
-					<div className="flex flex-col justify-center">
-						<h2 className="text-slate-800 font-extrabold text-xl">{reduxUser.name} </h2>
+				<div className={flexContainer}>
+					<div className={flexColContainer}>
+						<h2 className={title}>{reduxUser.name} </h2>
 					</div>
-					<div className="h-16 w-16 ">
-						<img className="w-full h-full rounded-full object-cover" src={reduxUser.picture || undefined} alt="user" />
+					<div className={imageConainer}>
+						<img className={image} src={reduxUser.picture || undefined} alt="user" />
 					</div>
 				</div>
 			) : (

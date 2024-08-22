@@ -1,3 +1,142 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+	transition: all 0.3s ease;
+}
+
+:root {
+	--rich-black: #001524ff;
+	--caribbean-current: #15616dff;
+	--papaya-whip: #ffecd1ff;
+	--orange-wheel: #d87d4aff;
+	--orange-light: #fbaf85ff;
+	--white: #ffffff;
+	--grey: #f1f1f1ff;
+	--gray-light: #fafafaff;
+	--shadow-black: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Background Classes */
+.bg-rich-black {
+	background-color: var(--rich-black);
+}
+
+.bg-caribbean-current {
+	background-color: var(--caribbean-current);
+}
+
+.bg-papaya-whip {
+	background-color: var(--papaya-whip);
+}
+
+.bg-orange-wheel {
+	background-color: var(--orange-wheel);
+}
+
+.bg-orange-light {
+	background-color: var(--orange-light);
+}
+
+.bg-white {
+	background-color: var(--white);
+}
+
+.bg-grey {
+	background-color: var(--grey);
+}
+
+.bg-gray-light {
+	background-color: var(--gray-light);
+}
+
+/* Text Color Classes */
+.text-rich-black {
+	color: var(--rich-black);
+}
+
+.text-caribbean-current {
+	color: var(--caribbean-current);
+}
+
+.text-papaya-whip {
+	color: var(--papaya-whip);
+}
+
+.text-orange-wheel {
+	color: var(--orange-wheel);
+}
+
+.text-orange-light {
+	color: var(--orange-light);
+}
+
+.text-white {
+	color: var(--white);
+}
+
+.text-grey {
+	color: var(--grey);
+}
+
+.text-gray-light {
+	color: var(--gray-light);
+}
+
+/* Shadow Class */
+.shadow-black {
+	box-shadow: var(--shadow-black);
+}
+
+.authform__form-control {
+	border: none;
+	background-color: transparent;
+}
+
+.authform__form-control input {
+	border-bottom: 1px solid var(--gray-light);
+	background-color: transparent;
+	margin-bottom: 1.25em;
+}
+
+.authform__form-control input:focus {
+	border: none;
+	outline: none;
+	border-bottom: 1px solid var(--gray-light);
+}
+
+.authform__submit-btn {
+	background-color: var(--papaya-whip);
+	color: var(--rich-black);
+	font-weight: bold;
+	border: none;
+	padding: 0.75em 1.5em;
+	border-radius: 0.25em;
+	cursor: pointer;
+}
+
+.authform__submit-btn:hover {
+	background-color: var(--orange-wheel);
+	color: var(--white);
+}
+
+.authform__google-btn {
+	background-color: var(--white);
+	color: var(--rich-black);
+	font-weight: bold;
+	border: none;
+	padding: 0.75em 1.5em;
+	border-radius: 0.25em;
+	cursor: pointer;
+}
+
+.authform__google-btn:hover {
+	background-color: var(--gray-light);
+	color: var(--rich-black);
+}
+
+.authform__link-btn {
+	color: var(--orange-wheel);
+	text-decoration: none;
+}

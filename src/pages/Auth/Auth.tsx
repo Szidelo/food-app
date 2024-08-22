@@ -8,10 +8,14 @@ import { useState } from "react";
 import AuthService from "../../utils/service/AuthService";
 import { useDispatch } from "react-redux";
 import { AUTH_TYPES } from "../../utils/constants/auth";
+import AuthForm from "../../components/AuthForm/AuthForm";
+import { authClasses } from "./authClasses";
 
 export type AuthType = "login" | "signup";
 
 function Auth() {
+	const { container } = authClasses;
+
 	const [authType, setAuthType] = useState<AuthType>("login");
 
 	const user = useAppSelector((state) => state.auth.user);
@@ -46,9 +50,20 @@ function Auth() {
 	});
 
 	return (
-		<div className="auth">
+		<div className={container}>
 			<Card />
-			<h2>{authType === AUTH_TYPES.LOGIN ? "Log In" : "Register your account"}</h2>
+			<div className="flex rounded-xl overflow-hidden shadow-lg md:w-8/12 md:h-4/6 w-10/12 h-5/6 bg-caribbean-current">
+				<div className="w-1/2 h-full bg-black overflow-hidden">
+					<img
+						className="w-full h-full object-cover"
+						src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+						alt="random"
+					/>
+				</div>
+				<div className="w-1/2">
+					<AuthForm />
+				</div>
+			</div>
 			{/* <form onSubmit={handleSubmit(handleFormSubmit)} action="">
 				{authType === AUTH_TYPES.SIGNUP ? (
 					<>
@@ -116,14 +131,14 @@ function Auth() {
 				)}
 				<button className="w-full">{authType === AUTH_TYPES.LOGIN ? "Log In" : "Sign Up"}</button>
 			</form> */}
-			<div className="form-options">
+			{/* <div className="form-options">
 				<Link to="/">
 					<button>Home</button>
 				</Link>
 				<button disabled={user == null} onClick={handleSignOut}>
 					Sign Out
 				</button>
-			</div>
+			</div> */}
 		</div>
 	);
 }
