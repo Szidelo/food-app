@@ -9,6 +9,15 @@ class FirestoreService {
 		try {
 			if (user && recipe) {
 				const { label, uri, image } = recipe;
+				const existingRecipesSnapshot = await this.getRecipesFromDb(user);
+				const existingRecipes = existingRecipesSnapshot?.docs.map((doc) => doc.data());
+				const recipeExists = existingRecipes?.some((doc) => doc.uri === uri);
+
+				if (recipeExists) {
+					console.log("Recipe already exists in Firestore");
+					return;
+				}
+
 				await addDoc(collection(db, "users", user.id, "favoriteRecipes"), {
 					title: label,
 					uri,
@@ -21,7 +30,6 @@ class FirestoreService {
 			console.error("Error adding recipe to Firestore:", error);
 		}
 	}
-
 	async getRecipesFromDb(user: User | null) {
 		try {
 			if (user) {
@@ -66,7 +74,7 @@ class FirestoreService {
 				date.getMonth() + 1
 			}-${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-			const docRef = doc(db, "users", user.id, "userData", formattedDate);
+			const docRef = doc(db, "users", user.id, "userData", "healthData", "byDate", formattedDate);
 			await setDoc(docRef, {
 				...healthData,
 				updatedAt: formattedDate,

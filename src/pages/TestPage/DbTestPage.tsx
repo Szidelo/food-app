@@ -52,8 +52,10 @@ function DbTestPage() {
 
 	useEffect(() => {
 		if (selectedRecipe) {
+			console.log("selectedRecipe", selectedRecipe);
+
 			imageService.fetchImages(selectedRecipe.label).then((res) => {
-				setHeroImage(res.results[0].urls.regular);
+				setHeroImage(res.results[6].urls.regular);
 			});
 		}
 	}, [selectedRecipe]);

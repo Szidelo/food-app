@@ -99,6 +99,8 @@ class AuthService {
 			try {
 				this.dispatch(update({ email: user.email || "", name, picture, id: user.uid }));
 
+				await updateProfile(user, { displayName: name, photoURL: picture });
+
 				await firestoreService.saveUserDataToDb(
 					{ email: user.email || "", name, picture, id: user.uid },
 					{ displayName: name, photoURL: picture, email: user.email || "" }
