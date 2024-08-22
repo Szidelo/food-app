@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import Card from "../../components/Card";
+import Card from "../../components/UserCard/Card";
 import { useAppSelector } from "../../redux/hooks/hooks";
 
 function Home() {
 	const user = useAppSelector((state) => state.auth.user);
 	return (
-		<div>
-			<h1>Home</h1>
+		<div className="max-w-screen-xl">
+			<h1 className="">Home</h1>
 			<Card />
 			<br />
 			<div>

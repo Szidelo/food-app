@@ -1,8 +1,8 @@
 import { useAppSelector } from "../../redux/hooks/hooks";
-import Card from "../../components/Card";
+import Card from "../../components/UserCard/Card";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { AuthFormSignIn, AuthFormSignUp, signInFormSchema, signUpFormSchema } from "../../utils/helpers/Form";
+import { AuthFormSignIn, AuthFormSignUp, signInFormSchema, signUpFormSchema } from "../../utils/helpers/form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import AuthService from "../../utils/service/AuthService";
@@ -49,7 +49,7 @@ function Auth() {
 		<div className="auth">
 			<Card />
 			<h2>{authType === AUTH_TYPES.LOGIN ? "Log In" : "Register your account"}</h2>
-			<form onSubmit={handleSubmit(handleFormSubmit)} action="">
+			{/* <form onSubmit={handleSubmit(handleFormSubmit)} action="">
 				{authType === AUTH_TYPES.SIGNUP ? (
 					<>
 						<div className="form-control">
@@ -115,7 +115,7 @@ function Auth() {
 					</>
 				)}
 				<button className="w-full">{authType === AUTH_TYPES.LOGIN ? "Log In" : "Sign Up"}</button>
-			</form>
+			</form> */}
 			<div className="form-options">
 				<Link to="/">
 					<button>Home</button>
