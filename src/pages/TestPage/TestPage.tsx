@@ -6,7 +6,7 @@ import { foodService } from "../../utils/service/FoodDb";
 import { nutrientService } from "../../utils/service/Nutrients";
 import { recipeService } from "../../utils/service/Rceipe";
 import { Link } from "react-router-dom";
-import Card from "../../components/UserCard/Card";
+import Card from "../../components/UserCard/UserCard";
 
 function TestPage() {
 	const [recipes, setRecipes] = useState<RecipeItem[]>([]);

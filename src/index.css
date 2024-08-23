@@ -98,9 +98,22 @@
 	box-shadow: var(--shadow-black);
 }
 
+/* Buttons */
+
+.btn {
+	color: var(--orange-wheel);
+	text-decoration: none;
+	padding: 0.75em 1.5em;
+	font-size: 1.25em;
+	font-weight: 700;
+}
+
+.btn:hover {
+	color: var(--white);
+}
+
 /* Loader */
 
-/* HTML: <div class="loader"></div> */
 .loader {
 	width: 50px;
 	aspect-ratio: 1;
@@ -187,4 +200,32 @@
 	.authform__google-btn {
 		background-position: 30px 15px;
 	}
+}
+
+/* NavBar */
+
+.navbar__user-icon {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+
+.navbar__user-icon img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
+	bottom: 50px;
+}
+
+.navbar__user-icon span {
+	position: absolute;
+	bottom: 0;
+	color: var(--white);
+	font-size: 1.25em;
 }

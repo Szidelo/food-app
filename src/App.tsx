@@ -9,27 +9,22 @@ import { useAppSelector } from "./redux/hooks/hooks";
 import DbTestPage from "./pages/TestPage/DbTestPage";
 import TestBmi from "./pages/TestPage/TestBmi";
 import EditUser from "./pages/Auth/EditUser";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 	const dispatch = useDispatch();
 	const currentUser = useAppSelector((state) => state.auth.user);
 	const user = useAppSelector((state) => state.auth.user);
 	const authServ = new AuthService(dispatch);
+
 	useEffect(() => {
 		authServ.handleAuthStateChange(currentUser);
 		// eslint-disable-next-line
 	}, []);
 
 	return (
-		// <Routes>
-		// 	<Route path="/" element={<Home />} />
-		// 	<Route path="test-page" element={<TestPage />} />
-		// 	<Route path="auth" element={<Auth />} />
-		// 	<Route path="db" element={<DbTestPage />} />
-		// 	<Route path="bmi" element={<TestBmi />} />
-		// 	{user && <Route path="user" element={<EditUser />} />}
-		// </Routes>
 		<>
+			{user && <Navbar />} {/* Render Navbar only when the user is authenticated */}
 			{!user ? (
 				<Auth />
 			) : (

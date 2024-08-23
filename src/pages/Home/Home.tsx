@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Card from "../../components/UserCard/Card";
+import Card from "../../components/UserCard/UserCard";
 import { useAppSelector } from "../../redux/hooks/hooks";
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
 	return (
 		<div className="max-w-screen-xl">
 			<h1 className="">Home</h1>
-			<Card />
+			{/* <Card /> */}
 			<br />
 			<div>
 				<Link to="/test-page">

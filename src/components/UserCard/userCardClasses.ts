@@ -1,8 +1,8 @@
 export const userCardClasses = {
-	container: "absolute top-2 right-2 w-60 bg-slate-400 rounded ms-auto py-2 px-6",
+	container: "w-auto rounded ms-auto",
 	flexContainer: "flex justify-between",
-	flexColContainer: "flex flex-col justify-center",
-	imageConainer: "h-16 w-16",
+	flexColContainer: "flex justify-center",
+	imageConainer: "h-16 w-16 ms-6",
 	image: "w-full h-full rounded-full object-cover",
-	title: "text-slate-800 font-extrabold text-xl",
+	title: "text-slate-50 font-extrabold text-xl flex items-center me-6",
 };
