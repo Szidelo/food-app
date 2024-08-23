@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import { login, logout, setToken, update } from "../../redux/slices/authSlice";
-import { AuthFormSignIn, AuthFormSignUp } from "../helpers/Form";
+import { AuthFormSignIn, AuthFormSignUp } from "../helpers/form";
 import { AppDispatch } from "../../redux/store/store";
 import { User, UserData } from "../interfaces/items/itemsInterfaces";
 import { firestoreService } from "./Firestore";

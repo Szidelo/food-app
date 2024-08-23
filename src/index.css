@@ -51,6 +51,13 @@
 	background-color: var(--gray-light);
 }
 
+.bg-auth {
+	background-image: url("https://plus.unsplash.com/premium_photo-1701882459791-49ef309e1957?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
 /* Text Color Classes */
 .text-rich-black {
 	color: var(--rich-black);
@@ -89,6 +96,24 @@
 	box-shadow: var(--shadow-black);
 }
 
+/* Loader */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+	width: 50px;
+	aspect-ratio: 1;
+	--_c: no-repeat radial-gradient(farthest-side, var(--papaya-whip) 92%, #0000);
+	background: var(--_c) top, var(--_c) left, var(--_c) right, var(--_c) bottom;
+	background-size: 12px 12px;
+	animation: l7 1s infinite;
+}
+@keyframes l7 {
+	to {
+		transform: rotate(0.5turn);
+	}
+}
+
+/* Auth form  */
 .authform__form-control {
 	border: none;
 	background-color: transparent;
@@ -122,21 +147,42 @@
 }
 
 .authform__google-btn {
-	background-color: var(--white);
-	color: var(--rich-black);
-	font-weight: bold;
-	border: none;
 	padding: 0.75em 1.5em;
+	border: none;
 	border-radius: 0.25em;
-	cursor: pointer;
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+	color: #757575;
+	font-weight: bold;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: 70px 15px;
 }
 
 .authform__google-btn:hover {
-	background-color: var(--gray-light);
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
 	color: var(--rich-black);
 }
 
 .authform__link-btn {
 	color: var(--orange-wheel);
 	text-decoration: none;
+}
+
+.authform__form-error {
+	color: red;
+	font-size: 12px;
+	margin-top: -30px;
+}
+
+.authform__error-input {
+	border-bottom: 1px solid red !important;
+}
+
+@media (max-width: 768px) {
+	.authform__google-btn {
+		background-position: 30px 15px;
+	}
 }
