@@ -91,7 +91,7 @@ function AuthForm() {
 		);
 
 	return (
-		<form onSubmit={handleSubmit(handleFormSubmit)} className="text-papaya-whip md:p-10 px-2 py-20">
+		<form onSubmit={handleSubmit(handleFormSubmit)} className="text-papaya-whip md:p-10 px-2 py-15 my-auto w-full">
 			<div className="">
 				<h2 className="font-bold text-4xl text-center mb-8">{authType === AUTH_TYPES.SIGNUP ? "Sign Up" : "Sign In"}</h2>
 				<div className="flex flex-col authform__form-control p-6 gap-4">

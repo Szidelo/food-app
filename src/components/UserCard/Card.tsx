@@ -25,7 +25,14 @@ function Card() {
 						</button>
 					</div>
 					<div className={imageConainer}>
-						<img className={image} src={reduxUser.picture || undefined} alt="user" />
+						<img
+							className={image}
+							src={
+								reduxUser.picture ||
+								"https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+							}
+							alt="user"
+						/>
 					</div>
 				</div>
 			) : (
