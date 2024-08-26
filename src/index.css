@@ -101,15 +101,28 @@
 /* Buttons */
 
 .btn {
-	color: var(--orange-wheel);
+	color: var(--orange-light);
 	text-decoration: none;
-	padding: 0.75em 1.5em;
+	padding: 0.5em 1.25em;
 	font-size: 1.25em;
 	font-weight: 700;
+	border: 2px solid var(--orange-light);
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .btn:hover {
-	color: var(--white);
+	color: var(--caribbean-current);
+	background-color: var(--orange-light);
+}
+
+.btn-link {
+	border: none;
+}
+
+.btn-link:hover {
+	background-color: transparent;
+	color: var(--orange-wheel);
 }
 
 /* Loader */
@@ -228,4 +241,22 @@
 	bottom: 0;
 	color: var(--white);
 	font-size: 1.25em;
+}
+
+/* Home Page */
+
+.home__banner {
+	position: relative;
+	height: 75vh;
+	background-color: var(--caribbean-current);
+	color: var(--papaya-whip);
+	z-index: 0;
+}
+
+.home__svg-header {
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	z-index: 1;
 }

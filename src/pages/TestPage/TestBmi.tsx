@@ -42,7 +42,7 @@ function TestBmi() {
 	};
 
 	return (
-		<div className="health__container">
+		<div className="health__container mt-56">
 			<h2>Please provide info</h2>
 			<form onSubmit={handleSave} className="health__form">
 				<div className="form-top">

@@ -55,7 +55,7 @@ function DbTestPage() {
 	}, [selectedRecipe]);
 
 	return (
-		<div>
+		<div className="mt-56">
 			<div>
 				<input type="text" placeholder="Enter recipe keyword" onChange={handleChange} value={query} />
 				<button onClick={handleSearch}>Search</button>

@@ -1,33 +1,12 @@
-import { Link } from "react-router-dom";
-import Card from "../../components/UserCard/UserCard";
-import { useAppSelector } from "../../redux/hooks/hooks";
+import Header from "../../components/Header/Header";
 
 function Home() {
-	const user = useAppSelector((state) => state.auth.user);
+	const buttons = ["Get Started", "Learn More"];
+	const description =
+		"Discover recipes, track ingredients with caloric info, and achieve your health goals with personalized BMI and daily caloric needs calculations. Create your perfect meal plan effortlessly with FoodApp.";
 	return (
-		<div className="max-w-screen-xl">
-			<h1 className="">Home</h1>
-			{/* <Card /> */}
-			<br />
-			<div>
-				<Link to="/test-page">
-					<button>Test Page</button>
-				</Link>
-				<Link to="/auth">
-					<button>Authentication</button>
-				</Link>
-				<Link to="/db">
-					<button>Data</button>
-				</Link>
-				<Link to="/bmi">
-					<button>Bmi</button>
-				</Link>
-				{user && (
-					<Link to="/user">
-						<button>Edit User</button>
-					</Link>
-				)}
-			</div>
+		<div className="home__main">
+			<Header type="home" title="Welcome to FoodApp" description={description} buttons={buttons} />
 		</div>
 	);
 }
