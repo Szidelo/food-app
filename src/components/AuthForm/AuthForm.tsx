@@ -104,7 +104,7 @@ function AuthForm() {
 
 	const errorMessage = error && (
 		<div className="flex flex-col items-center justify-center">
-			<p className="mb-4 text-xl">{helpers.formatErrorCode(error)}!</p>
+			<p className="mb-4 text-xl capitalize">{helpers.formatErrorCode(error)}!</p>
 			<button onClick={() => setError(null)} className="btn rounded-full">
 				Try Again!
 			</button>

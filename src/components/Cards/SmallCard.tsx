@@ -1,5 +1,3 @@
-import React from "react";
-
 type PropsType = {
 	img: string;
 	title: string;
@@ -18,7 +16,7 @@ function SmallCard(props: PropsType) {
 				<div className="h-6 overflow-hidden">
 					<h2 className="text-xl font-extrabold">{title}</h2>
 				</div>
-				<p>{description}</p>
+				<p className="capitalize">{description}</p>
 			</div>
 			<div className="px-4 flex gap-4">
 				<button className="btn btn-card">Save</button>

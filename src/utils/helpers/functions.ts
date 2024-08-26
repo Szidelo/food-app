@@ -20,12 +20,7 @@ class Helpers {
 	}
 
 	formatErrorCode(errorCode: string): string {
-		return errorCode
-			.split("/")[1]
-			.replace(/-/g, " ")
-			.split(" ")
-			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-			.join(" ");
+		return errorCode.split("/")[1].replace(/-/g, " ").split(" ").join(" ");
 	}
 }
 
