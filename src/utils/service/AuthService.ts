@@ -5,6 +5,7 @@ import { AuthFormSignIn, AuthFormSignUp } from "../helpers/form";
 import { AppDispatch } from "../../redux/store/store";
 import { User, UserData } from "../interfaces/items/itemsInterfaces";
 import { firestoreService } from "./Firestore";
+import { FirebaseError } from "firebase/app";
 
 class AuthService {
 	constructor(protected dispatch: AppDispatch, protected userAuth = auth) {
@@ -20,7 +21,7 @@ class AuthService {
 		return null;
 	}
 
-	async handleSignIn(data: AuthFormSignIn): Promise<void> {
+	async handleSignIn(data: AuthFormSignIn): Promise<void | string> {
 		const { email, password } = data;
 		try {
 			const userCredential = await signInWithEmailAndPassword(this.userAuth, email, password);
@@ -29,11 +30,15 @@ class AuthService {
 			this.dispatch(login({ email: email, name: displayName || "", picture: photoURL || "", id: uid }));
 			console.log("user logged in", user);
 		} catch (error) {
+			if (error instanceof FirebaseError) {
+				console.error(error.code);
+				return error.code;
+			}
 			console.error(error);
 		}
 	}
 
-	async handleSignUp(data: AuthFormSignUp): Promise<void> {
+	async handleSignUp(data: AuthFormSignUp): Promise<void | string> {
 		const { email, password, name } = data;
 		try {
 			const userCredential = await createUserWithEmailAndPassword(this.userAuth, email, password);
@@ -52,6 +57,10 @@ class AuthService {
 
 			console.log("User created and profile updated", user);
 		} catch (error) {
+			if (error instanceof FirebaseError) {
+				console.error(error.code);
+				return error.code;
+			}
 			console.error("Error during sign up:", error);
 		}
 	}

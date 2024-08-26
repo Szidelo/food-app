@@ -18,6 +18,15 @@ class Helpers {
 			console.error("No recipes found");
 		}
 	}
+
+	formatErrorCode(errorCode: string): string {
+		return errorCode
+			.split("/")[1]
+			.replace(/-/g, " ")
+			.split(" ")
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(" ");
+	}
 }
 
 export const helpers = new Helpers();

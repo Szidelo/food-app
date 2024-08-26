@@ -39,7 +39,7 @@ function Navbar() {
 	}, [width]);
 
 	const desktopNavBar = (
-		<nav className="z-30 fixed w-full top-0 left-0 bg-transparent p-4 text-white flex items-center justify-between px-32">
+		<nav className="z-30 fixed w-full top-0 left-0 bg-transparent bg-caribbean-current p-4 text-white flex items-center justify-between px-32">
 			<div>
 				<img className="w-24" src={logo} alt="logo" />
 			</div>

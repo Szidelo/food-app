@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthFormSignIn, AuthFormSignUp, signInFormSchema, signUpFormSchema } from "../../utils/helpers/form";
 import { AUTH_TYPES } from "../../utils/constants/auth";
+import { helpers } from "../../utils/helpers/Functions";
 
 type AuthType = "login" | "signup";
 
@@ -14,6 +15,7 @@ function AuthForm() {
 
 	const [loading, setLoading] = useState(false);
 	const [authType, setAuthType] = useState<AuthType>("signup");
+	const [error, setError] = useState<string | null>(null);
 
 	const authService = new AuthService(dispatch);
 
@@ -25,9 +27,19 @@ function AuthForm() {
 	const handleFormSubmit: SubmitHandler<AuthFormSignIn | AuthFormSignUp> = async (data) => {
 		setLoading(true);
 		if (authType === "login") {
-			await authService.handleSignIn(data as AuthFormSignIn);
+			await authService.handleSignIn(data as AuthFormSignIn).then((error) => {
+				if (error) {
+					setError(error);
+					setLoading(false);
+				}
+			});
 		} else {
-			await authService.handleSignUp(data as AuthFormSignUp);
+			await authService.handleSignUp(data as AuthFormSignUp).then((error) => {
+				if (error) {
+					setError(error);
+					setLoading(false);
+				}
+			});
 		}
 		reset();
 		setLoading(false);
@@ -89,6 +101,19 @@ function AuthForm() {
 				{errors.password && <p className="authform__form-error">{errors.password.message}</p>}
 			</>
 		);
+
+	const errorMessage = error && (
+		<div className="flex flex-col items-center justify-center">
+			<p className="mb-4 text-xl">{helpers.formatErrorCode(error)}!</p>
+			<button onClick={() => setError(null)} className="btn rounded-full">
+				Try Again!
+			</button>
+		</div>
+	);
+
+	if (errorMessage) {
+		return errorMessage;
+	}
 
 	return (
 		<form onSubmit={handleSubmit(handleFormSubmit)} className="text-papaya-whip md:p-10 px-2 py-15 my-auto w-full">

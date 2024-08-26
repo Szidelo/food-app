@@ -17,7 +17,7 @@ function Header(props: PropsType) {
 						<img src={image || ""} alt="" />
 					</div>
 				)}
-				<div className="space-y-10 z-10">
+				<div className="space-y-10 z-[5]">
 					<h1 className="text-4xl font-bold text-white">{title}</h1>
 					<p className="text-white max-w-3xl">{description ? description : ""}</p>
 					<div className="flex gap-8">

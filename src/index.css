@@ -11,6 +11,8 @@
 :root {
 	--rich-black: #001524ff;
 	--caribbean-current: #15616dff;
+	--caribbean-current-dark: #0f4955ff;
+	--caribbean-current-light: #4d909bff;
 	--papaya-whip: #ffecd1ff;
 	--orange-wheel: #d87d4aff;
 	--orange-light: #fbaf85ff;
@@ -27,6 +29,14 @@
 
 .bg-caribbean-current {
 	background-color: var(--caribbean-current);
+}
+
+.bg-caribbean-current-dark {
+	background-color: var(--caribbean-current-dark);
+}
+
+.bg-caribbean-current-light {
+	background-color: var(--caribbean-current-light);
 }
 
 .bg-papaya-whip {
@@ -67,6 +77,14 @@
 
 .text-caribbean-current {
 	color: var(--caribbean-current);
+}
+
+.text-caribbean-current-dark {
+	color: var(--caribbean-current-dark);
+}
+
+.text-caribbean-current-light {
+	color: var(--caribbean-current-light);
 }
 
 .text-papaya-whip {
@@ -123,6 +141,19 @@
 .btn-link:hover {
 	background-color: transparent;
 	color: var(--orange-wheel);
+}
+
+.btn-card {
+	color: var(--caribbean-current);
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+	padding: 0;
+}
+
+.btn-card:hover {
+	background-color: transparent;
+	color: var(--caribbean-current-light);
 }
 
 /* Loader */
@@ -241,6 +272,26 @@
 	bottom: 0;
 	color: var(--white);
 	font-size: 1.25em;
+}
+
+/* Cards */
+
+.card-image-wrapper {
+	position: relative;
+	object-fit: cover;
+	border-radius: 8px 8px 0 0;
+	overflow: hidden;
+}
+
+.card-image-wrapper img {
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+}
+
+.card-image-wrapper img:hover {
+	scale: 1.1;
 }
 
 /* Home Page */
