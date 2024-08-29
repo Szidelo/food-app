@@ -63,11 +63,8 @@ function About() {
 			</div>
 			<div className="h-20 mx-auto flex justify-center items-center space-x-6">
 				{indexes.map((index) => (
-					<div className="w-7 h-7 flex justify-center items-center">
-						<div
-							key={index}
-							className={`bullet ${activeBullet === index ? "active" : ""}`}
-							onClick={() => handleBulletClick(index)}></div>
+					<div key={index} className="w-7 h-7 flex justify-center items-center">
+						<div className={`bullet ${activeBullet === index ? "active" : ""}`} onClick={() => handleBulletClick(index)}></div>
 					</div>
 				))}
 			</div>

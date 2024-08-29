@@ -39,9 +39,11 @@ function DbTestPage() {
 	};
 
 	const getDb = async () => {
-		await firestoreService.getRecipesFromDb(user).then((res) => {
-			helpers.setRecipesFromDb(res, setData);
-		});
+		if (user !== null) {
+			await firestoreService.getRecipesFromDb(user).then((res) => {
+				helpers.setRecipesFromDb(res, setData);
+			});
+		}
 	};
 
 	const deleteRecipe = async (uri: string) => {
