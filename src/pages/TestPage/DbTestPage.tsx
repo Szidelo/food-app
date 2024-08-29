@@ -3,8 +3,8 @@ import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 import { recipeService } from "../../utils/service/Rceipe";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { firestoreService } from "../../utils/service/Firestore";
-import { helpers } from "../../utils/helpers/Functions";
 import { FirestoreData } from "../../utils/interfaces/items/itemsInterfaces";
+import { helpers } from "../../utils/helpers/functions";
 
 function DbTestPage() {
 	const [recipes, setRecipes] = useState<RecipeItem[]>([]);

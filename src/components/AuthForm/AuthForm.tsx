@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthFormSignIn, AuthFormSignUp, signInFormSchema, signUpFormSchema } from "../../utils/helpers/form";
 import { AUTH_TYPES } from "../../utils/constants/auth";
-import { helpers } from "../../utils/helpers/Functions";
+import { helpers } from "../../utils/helpers/functions";
 
 type AuthType = "login" | "signup";
 

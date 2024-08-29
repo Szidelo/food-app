@@ -11,6 +11,7 @@ class HealthCalculator {
 	private gender: Gender;
 	private activityLevel: ActivityLevel;
 
+	// singleton pattern
 	public static getInstance(weight: number, height: number, age: number, gender: Gender, activityLevel: ActivityLevel): HealthCalculator {
 		if (!HealthCalculator.instance) {
 			HealthCalculator.instance = new HealthCalculator(weight, height, age, gender, activityLevel);

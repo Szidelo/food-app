@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { helpers } from "../../utils/helpers/Functions";
+import { helpers } from "../../utils/helpers/functions";
 import { RecipeParamsBody } from "../../utils/interfaces/items/itemsInterfaces";
 import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 import { foodService } from "../../utils/service/FoodDb";
