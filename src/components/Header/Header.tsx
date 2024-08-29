@@ -2,9 +2,9 @@
 type PropsType = {
 	type: "home" | "food" | "details";
 	title: string;
-	description?: string | null;
-	image?: string | null;
-	buttons?: string[] | null;
+	description?: string;
+	image?: string;
+	buttons?: string[];
 };
 
 function Header(props: PropsType) {

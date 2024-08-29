@@ -18,6 +18,7 @@
 	--orange-light: #fbaf85ff;
 	--white: #ffffff;
 	--grey: #f1f1f1ff;
+	--grey-dark: #5f5f5f;
 	--gray-light: #fafafaff;
 	--shadow-black: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -107,6 +108,10 @@
 	color: var(--grey);
 }
 
+.text-grey-dark {
+	color: var(--grey-dark);
+}
+
 .text-gray-light {
 	color: var(--gray-light);
 }
@@ -144,7 +149,7 @@
 }
 
 .btn-card {
-	color: var(--caribbean-current);
+	color: var(--caribbean-current-light);
 	text-decoration: none;
 	cursor: pointer;
 	border: none;
@@ -153,7 +158,16 @@
 
 .btn-card:hover {
 	background-color: transparent;
-	color: var(--caribbean-current-light);
+	color: var(--caribbean-current);
+}
+
+.btn-dark {
+	color: var(--caribbean-current);
+	border-color: var(--caribbean-current);
+	&:hover {
+		background-color: var(--caribbean-current);
+		color: var(--orange-wheel);
+	}
 }
 
 /* Loader */
@@ -310,4 +324,78 @@
 	left: 0;
 	width: 100%;
 	z-index: 1;
+}
+
+.about__image-wrapper {
+	padding: 1.25em;
+	display: flex;
+	align-items: center;
+}
+
+.about__image-wrapper img {
+	width: 60%;
+	height: 100%;
+	max-height: 450px;
+	object-fit: cover;
+	border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+	z-index: 1;
+}
+
+.about__backdrop {
+	margin: 1.25em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60%;
+	height: 100%;
+	max-height: 450px;
+	border-radius: 48% 52% 23% 77% / 64% 73% 27% 36%;
+	background-color: var(--caribbean-current);
+	z-index: 0;
+}
+
+.bullet {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: var(--caribbean-current);
+	border: 2px solid transparent;
+	cursor: pointer;
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+.bullet:hover {
+	transform: scale(1.1);
+}
+
+.bullet.active {
+	background-color: transparent;
+	padding: 2px;
+	box-sizing: content-box;
+	max-height: 28px;
+	border-color: var(--caribbean-current);
+}
+
+.bullet.active::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	background-color: var(--caribbean-current);
+	border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+	.about__backdrop {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.about__image-wrapper img {
+		margin: 0 auto;
+	}
 }

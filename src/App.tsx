@@ -24,7 +24,7 @@ function App() {
 
 	return (
 		<>
-			{user && <Navbar />} {/* Render Navbar only when the user is authenticated */}
+			{user && <Navbar />}
 			{!user ? (
 				<Auth />
 			) : (

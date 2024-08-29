@@ -30,7 +30,7 @@ class FirestoreService {
 			console.error("Error adding recipe to Firestore:", error);
 		}
 	}
-	async getRecipesFromDb(user: User | null) {
+	async getRecipesFromDb(user: User) {
 		try {
 			if (user) {
 				const recipes = await getDocs(collection(db, "users", user.id, "favoriteRecipes"));
