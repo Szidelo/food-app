@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Spinner from "../Loaders/Spinner";
 import { useDispatch } from "react-redux";
-import AuthService from "../../utils/service/AuthService";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthFormSignIn, AuthFormSignUp, signInFormSchema, signUpFormSchema } from "../../utils/helpers/form";
 import { AUTH_TYPES } from "../../utils/constants/auth";
 import { helpers } from "../../utils/helpers/functions";
+import Spinner from "../Loaders/Spinner";
+import AuthService from "../../utils/service/AuthService";
 
 type AuthType = "login" | "signup";
 

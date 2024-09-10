@@ -23,7 +23,7 @@ function Header(props: PropsType) {
 					<div className="flex gap-8">
 						{buttons
 							? buttons.map((button) => (
-									<button key={button} className={`btn btn-${button} rounded-full`}>
+									<button key={button} className={`btn btn-${button} rounded-full shadow-md`}>
 										{button}
 									</button>
 							  ))

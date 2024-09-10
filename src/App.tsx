@@ -10,6 +10,7 @@ import DbTestPage from "./pages/TestPage/DbTestPage";
 import TestBmi from "./pages/TestPage/TestBmi";
 import EditUser from "./pages/Auth/EditUser";
 import Navbar from "./components/Navbar/Navbar";
+import Food from "./pages/Food/Food";
 
 function App() {
 	const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
 			) : (
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="food" element={<Food />} />
 					<Route path="test-page" element={<TestPage />} />
 					<Route path="auth" element={<Auth />} />
 					<Route path="db" element={<DbTestPage />} />
