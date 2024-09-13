@@ -7,7 +7,7 @@ function Auth() {
 	const { container } = authClasses;
 
 	return (
-		<div className={container + " bg-auth"}>
+		<section className={container + " bg-auth"}>
 			<div className="w-full h-full flex justify-center items-center backdrop-brightness-50">
 				<div className="flex rounded-xl overflow-hidden shadow-xl md:w-8/12 md:h-4/6 w-full h-[calc(100vh-36px)] md:m-0 m-4 bg-caribbean-current">
 					<div className="md:w-1/2 md:h-full w-0 bg-black overflow-hidden">
@@ -22,7 +22,7 @@ function Auth() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }
 

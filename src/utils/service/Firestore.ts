@@ -9,6 +9,7 @@ class FirestoreService {
 		try {
 			if (user && recipe) {
 				const { label, uri, image } = recipe;
+				console.log(image);
 				const existingRecipesSnapshot = await this.getRecipesFromDb(user);
 				const existingRecipes = existingRecipesSnapshot?.docs.map((doc) => doc.data());
 				const recipeExists = existingRecipes?.some((doc) => doc.uri === uri);

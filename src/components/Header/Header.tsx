@@ -10,26 +10,29 @@ type PropsType = {
 function Header(props: PropsType) {
 	const { type, title, description, image, buttons } = props;
 	return (
-		<div className={type === "home" ? "home__banner" : undefined}>
+		<div className={type === "home" ? "home__banner" : "food__banner"}>
 			<div className="container h-full w-5/6 flex items-center justify-start mx-auto">
 				{image && (
 					<div>
 						<img src={image || ""} alt="" />
 					</div>
 				)}
-				<div className="space-y-10 z-[5]">
-					<h1 className="text-4xl font-bold text-white">{title}</h1>
-					<p className="text-white max-w-3xl">{description ? description : ""}</p>
-					<div className="flex gap-8">
-						{buttons
-							? buttons.map((button) => (
-									<button key={button} className={`btn btn-${button} rounded-full shadow-md`}>
-										{button}
-									</button>
-							  ))
-							: ""}
+				{type === "home" && (
+					<div className="space-y-10 z-[5]">
+						<h1 className="text-4xl font-bold text-white">{title}</h1>
+						<p className="text-white max-w-3xl">{description ? description : ""}</p>
+						<div className="flex gap-8">
+							{buttons
+								? buttons.map((button) => (
+										<button key={button} className={`btn btn-${button} rounded-full shadow-md`}>
+											{button}
+										</button>
+								  ))
+								: ""}
+						</div>
 					</div>
-				</div>
+				)}
+				{type === "food" && <h1 className="text-4xl w-full font-bold text-white text-center">{title}</h1>}
 			</div>
 			<svg className="home__svg-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
 				<path

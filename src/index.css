@@ -178,6 +178,16 @@
 	}
 }
 
+.btn-search {
+	background-color: var(--orange-light);
+	border-color: var(--orange-light);
+	color: var(--rich-black);
+	&:hover {
+		background-color: transparent;
+		color: var(--orange-light);
+	}
+}
+
 /* Loader */
 
 .loader {
@@ -400,4 +410,22 @@
 	.about__image-wrapper img {
 		margin: 0 auto;
 	}
+}
+
+/* Food section */
+
+.food__banner {
+	position: relative;
+	height: 50vh;
+	background-color: var(--caribbean-current);
+	color: var(--papaya-whip);
+	z-index: 0;
+}
+
+.search__input {
+	border: 1px solid var(--caribbean-current);
+	background-color: transparent;
+	padding: 0.5em 1em;
+	border-radius: 5px;
+	width: 100%;
 }

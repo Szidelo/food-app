@@ -20,11 +20,11 @@ function Home() {
 		}
 	}, [recipes]);
 	return (
-		<div className="home__main">
+		<section>
 			<Header type="home" title="Welcome to FoodApp" description={description} buttons={buttons} />
 			<FoodGallery title="Recepies you might like..." recipes={recipes} />
 			<About />
-		</div>
+		</section>
 	);
 }
 

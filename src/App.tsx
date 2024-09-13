@@ -36,7 +36,7 @@ function App() {
 					<Route path="auth" element={<Auth />} />
 					<Route path="db" element={<DbTestPage />} />
 					<Route path="bmi" element={<TestBmi />} />
-					{user && <Route path="user" element={<EditUser />} />}
+					<Route path="user" element={<EditUser />} />
 				</Routes>
 			)}
 		</>
