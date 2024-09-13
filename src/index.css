@@ -188,6 +188,27 @@
 	}
 }
 
+.btn-food-icon {
+	border-radius: 48% 52% 23% 77% / 64% 73% 27% 36%;
+	background-color: var(--orange-wheel);
+	border: none;
+	color: var(--gray-light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 1.25em 1.5em;
+	&:hover {
+		background-color: var(--caribbean-current);
+		color: var(--white);
+	}
+}
+
+.btn-food-icon.active {
+	background-color: var(--caribbean-current);
+	color: var(--white);
+}
+
 /* Loader */
 
 .loader {
