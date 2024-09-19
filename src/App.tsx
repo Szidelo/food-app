@@ -11,6 +11,7 @@ import TestBmi from "./pages/TestPage/TestBmi";
 import EditUser from "./pages/Auth/EditUser";
 import Navbar from "./components/Navbar/Navbar";
 import Food from "./pages/Food/Food";
+import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
 
 function App() {
 	const dispatch = useDispatch();
@@ -31,7 +32,8 @@ function App() {
 			) : (
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="food" element={<Food />} />
+					<Route path="recipes" element={<Food />} />
+					<Route path="recipes/:id" element={<RecipeDetails />} />
 					<Route path="test-page" element={<TestPage />} />
 					<Route path="auth" element={<Auth />} />
 					<Route path="db" element={<DbTestPage />} />

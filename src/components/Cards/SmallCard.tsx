@@ -1,6 +1,9 @@
 import { firestoreService } from "../../utils/service/Firestore";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
+import { useEffect, useState } from "react";
+import { helpers } from "../../utils/helpers/functions";
+import { Link } from "react-router-dom";
 
 type PropsType = {
 	img: string;
@@ -13,6 +16,17 @@ type PropsType = {
 function SmallCard(props: PropsType) {
 	const user = useAppSelector((state) => state.auth.user);
 
+	const [recipeId, setRecipeId] = useState<string>("");
+
+	const getItemId = (uri: string) => {
+		const id = helpers.getRecipeIdFromUrl(uri);
+		setRecipeId(id);
+	};
+
+	useEffect(() => {
+		getItemId(props.id);
+	}, [props.id]);
+
 	const handleSaveRecipe = async (recipe: RecipeItem) => {
 		if (user !== null) await firestoreService.addRecipeToDb(recipe, user);
 	};
@@ -20,9 +34,11 @@ function SmallCard(props: PropsType) {
 	const { img, title, description, recipe } = props;
 	return (
 		<div className="rounded-lg lg:w-[346px] h-[340px] w-full lg:px-0 px-4 shadow-md mb-10">
-			<div className="card-image-wrapper h-3/5 w-full bg-center cursor-pointer">
-				<img loading="lazy" src={img} alt="background-image" />
-			</div>
+			<Link to={`/recipes/${recipeId}`}>
+				<div className="card-image-wrapper h-3/5 w-full bg-center cursor-pointer">
+					<img className="" loading="lazy" src={img} alt="background-image" />
+				</div>
+			</Link>
 			<div className="p-4">
 				<div className="h-8 overflow-hidden">
 					<h2 className="text-xl font-extrabold">{title}</h2>
@@ -33,7 +49,9 @@ function SmallCard(props: PropsType) {
 				<button onClick={() => handleSaveRecipe(recipe)} className="btn btn-card">
 					Save
 				</button>
-				<button className="btn btn-card">View Recipe</button>
+				<Link to={`/recipes/${recipeId}`}>
+					<button className="btn btn-card">View Recipe</button>
+				</Link>
 			</div>
 		</div>
 	);

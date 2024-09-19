@@ -194,4 +194,4 @@ interface TotalNutrientsKCal {
 	PROCNT_KCAL: Nutrient;
 }
 
-export type { RecipeItem, ApiResponse, FoodApiResponse, ParsedItem, Food, NutritionDetailsResponse };
+export type { RecipeItem, ApiResponse, FoodApiResponse, ParsedItem, Food, NutritionDetailsResponse, Ingredient };

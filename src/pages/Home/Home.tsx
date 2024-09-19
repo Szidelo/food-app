@@ -21,7 +21,7 @@ function Home() {
 	}, [recipes]);
 	return (
 		<section>
-			<Header type="home" title="Welcome to FoodApp" description={description} buttons={buttons} />
+			<Header type="large" title="Welcome to FoodApp" description={description} buttons={buttons} />
 			<FoodGallery title="Recepies you might like..." recipes={recipes} />
 			<About />
 		</section>
