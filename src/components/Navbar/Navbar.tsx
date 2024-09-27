@@ -78,7 +78,7 @@ function Navbar() {
 				<IoHomeOutline className="w-7 h-7 text-orange-wheel" />
 				{/* <span className="text-xs">Home</span> */}
 			</Link>
-			<Link to="/test-page" className="flex flex-col items-center w-full">
+			<Link to="/recipes" className="flex flex-col items-center w-full">
 				<PiBowlFood className="w-7 h-7 text-orange-wheel" />
 				{/* <span className="text-xs">Test</span> */}
 			</Link>

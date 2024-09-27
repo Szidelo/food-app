@@ -52,13 +52,13 @@ function RecipeDetails() {
 
 	return (
 		<section className="mb-20">
-			<div className="container mx-auto mt-48 flex">
-				<div className="w-2/3">
+			<div className="container mx-auto mt-0 lg:mt-48 flex flex-col lg:flex-row">
+				<div className="w-full lg:w-2/3">
 					{recipe && <HeaderCard {...recipe} />}
 					<div className="bg-grey p-4 rounded-lg shadow-lg">
 						<div className="w-full">
 							<h1 className="text-4xl font-bold mb-10">{recipe?.ingredients.length} Ingredients</h1>
-							<table className="details__table table-auto w-full">
+							<table className="details__table table-auto w-full overflow-x-auto">
 								<thead className="text-left">
 									<tr>
 										<th className="p-2">Image</th>
@@ -79,8 +79,8 @@ function RecipeDetails() {
 												</td>
 												<td className="p-2 capitalize">{food}</td>
 												<td className="p-2">{text}</td>
-												<td className="p-2 min-w-28">{weight.toFixed()}g</td>
-												<td className="p-2 min-w-28">
+												<td className="p-2 lg:min-w-28">{weight.toFixed()}g</td>
+												<td className="p-2 lg:min-w-28">
 													<a className="btn btn-card p-0" href="#">
 														View
 													</a>
@@ -94,7 +94,7 @@ function RecipeDetails() {
 						<div className="w-1/2"></div>
 					</div>
 				</div>
-				<div className="w-1/3 bg-white rounded-xl shadow-lg p-4 ms-5">
+				<div className="w-full lg:w-1/3 bg-white rounded-xl shadow-lg p-4 lg:ms-5">
 					<h1 className="text-4xl font-bold text-center mb-10">Similar Recipes</h1>
 					<div className="flex flex-wrap items-center justify-center gap-6 recipe__similar-list">
 						{similarRecipes.length > 0 &&

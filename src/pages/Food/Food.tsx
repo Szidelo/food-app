@@ -4,7 +4,7 @@ import RecipeBrowse from "../../components/RecipeBrowse/RecipeBrowse";
 function Food() {
 	return (
 		<section className="food__main">
-			<Header type="small" title="Food" buttons={[]} />
+			<Header type="small" title="" buttons={[]} />
 			<RecipeBrowse />
 		</section>
 	);

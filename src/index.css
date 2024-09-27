@@ -199,9 +199,12 @@
 }
 
 .btn-search {
-	background-color: var(--orange-light);
-	border-color: var(--orange-light);
-	color: var(--rich-black);
+	background-color: transparent;
+	border-width: 1px;
+	border-color: var(--rich-black);
+	border-left: none;
+	color: var(--caribbean-current-dark);
+	border-radius: 0 10px 10px 0;
 	&:hover {
 		background-color: transparent;
 		color: var(--orange-light);
@@ -227,6 +230,13 @@
 .btn-food-icon.active {
 	background-color: var(--caribbean-current);
 	color: var(--white);
+}
+
+@media (max-width: 768px) {
+	.btn-food-icon {
+		padding: 1.25em;
+		font-size: 0.85em;
+	}
 }
 
 /* Loader */
@@ -461,18 +471,20 @@
 
 .food__banner {
 	position: relative;
-	height: 50vh;
+	height: 25vh;
 	background-color: var(--caribbean-current);
 	color: var(--papaya-whip);
 	z-index: 0;
 }
 
 .search__input {
-	border: 1px solid var(--caribbean-current);
+	border: 1px solid var(--rich-black);
+	border-right: none;
 	background-color: transparent;
 	padding: 0.5em 1em;
-	border-radius: 5px;
+	border-radius: 10px 0 0 10px;
 	width: 100%;
+	outline: none;
 }
 
 /* Details page */
@@ -486,5 +498,13 @@
 	border-top: 0.5px solid rgba(0, 0, 0, 0.3);
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.1);
+	}
+}
+
+@media (max-width: 768px) {
+	.details__table {
+		font-size: 0.75em;
+		overflow-y: scroll;
+		max-width: 100%;
 	}
 }

@@ -50,9 +50,9 @@ function About() {
 		<div className={mainStyle}>
 			<div className={containerStyle}>
 				<div className={imageContentStyle}>
-					<div className="about__backdrop"></div>
+					<div className="about__backdrop shadow-lg"></div>
 					<div className="about__image-wrapper">
-						<img src={img} alt="" />
+						<img className=" shadow-lg" src={img} alt="" />
 					</div>
 				</div>
 				<div className={contentStyle}>
