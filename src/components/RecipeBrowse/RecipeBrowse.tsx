@@ -9,8 +9,14 @@ import { recipeService } from "../../utils/service/Rceipe";
 import SmallCard from "../Cards/SmallCard";
 import Spinner from "../Loaders/Spinner";
 import { IoMdSearch } from "react-icons/io";
+import { RECIPE_OPTIONS } from "../../utils/constants/recipeOptions";
 
 type RecipeType = "pizza" | "chicken" | "salad" | "pasta" | "seafood" | "dessert" | "";
+
+interface OptionsInterface {
+	mealType: string;
+	health: string;
+}
 
 const CATEGORY_OF_FOOD: RecipeType[] = ["pizza", "chicken", "salad", "pasta", "seafood", "dessert"];
 const FoodIcon = (type: RecipeType) => {
@@ -43,13 +49,18 @@ function RecipeBrowse() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [recipeCategory, setRecipeCategory] = useState(RANDOM_CATEGORY);
+	const [options, setOptions] = useState<OptionsInterface>({
+		mealType: "",
+		health: "",
+	});
 
 	const handleSearch = () => {
 		if (query === "") return;
 		setLoading(true);
 		setRecipeCategory("");
+		setOptions({ mealType: "", health: "" });
 		recipeService
-			.getRecipesByQuery(query)
+			.getRecipesByQuery(query, { ...options })
 			.then((res) => {
 				setRecipes(res);
 			})
@@ -80,6 +91,7 @@ function RecipeBrowse() {
 				setRecipes([]);
 			});
 	}, [recipeCategory]);
+
 	return (
 		<>
 			<div className="container flex justify-center gap-7 lg:gap-10 w-full mx-auto mt-10 flex-wrap">
@@ -94,16 +106,35 @@ function RecipeBrowse() {
 				))}
 			</div>
 			<div className="mt-20 w-full">
-				<div className="container max-w-3xl px-2 lg:px-0 mx-auto my-4 flex">
+				<div className="container max-w-5xl px-2 lg:px-0 mx-auto my-4 flex items-center">
+					<p>Meal Type: </p>
+					<select name="mealType" id="mealType" onChange={(e) => setOptions({ ...options, mealType: e.target.value })}>
+						<option value="">All</option>
+						{RECIPE_OPTIONS.MEAL_TYPE.map((type) => (
+							<option key={type} value={type}>
+								{type}
+							</option>
+						))}
+					</select>
+					<p>Health: </p>
+					<select name="health" id="health" onChange={(e) => setOptions({ ...options, health: e.target.value })}>
+						<option value="">All</option>
+						{RECIPE_OPTIONS.HEALTH.map((option) => (
+							<option key={option} value={option}>
+								{option}
+							</option>
+						))}
+					</select>
 					<input
-						className="search__input shadow-md"
+						className="search__input shadow-sm"
 						type="text"
-						placeholder="Enter recipe keyword"
+						placeholder="Search recipes..."
 						value={query}
 						onKeyUp={(e) => e.key === "Enter" && handleSearch()}
 						onChange={handleChange}
 					/>
-					<button className="btn btn-search shadow-md" onClick={handleSearch}>
+
+					<button className="btn-search shadow-sm" onClick={handleSearch}>
 						<IoMdSearch size={35} />
 					</button>
 				</div>

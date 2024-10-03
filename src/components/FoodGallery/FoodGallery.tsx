@@ -27,7 +27,7 @@ function FoodGallery(props: Props) {
 
 	return (
 		<div className="container-full relative">
-			<div className="container mx-auto mt-24 pb-24 md:pb-48 lg:pb-96 flex flex-col">
+			<div className="container mx-auto mt-20 pb-24 md:pb-48 lg:pb-96 flex flex-col">
 				<div className="mb-20">
 					<h1 className="text-center font-extrabold text-4xl">{title}</h1>
 				</div>

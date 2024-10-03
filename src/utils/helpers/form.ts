@@ -30,3 +30,13 @@ export interface AuthFormSignIn {
 	email: string;
 	password: string;
 }
+
+export const editUserFormSchema = yup.object().shape({
+	name: yup.string().min(2, "Must be at least 2 characters long").required("Name is required"),
+	image: yup.string().required("Image is required"),
+});
+
+export interface EditUserFormInterface {
+	name: string;
+	image: string;
+}

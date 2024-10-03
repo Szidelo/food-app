@@ -1,17 +1,17 @@
 import { QuerySnapshot } from "firebase/firestore";
 import { Dispatch, SetStateAction } from "react";
-import { FirestoreData } from "../interfaces/items/itemsInterfaces";
+import { RecipeItem } from "../interfaces/providers/apiResponse";
 
 class Helpers {
 	getRecipeIdFromUrl(url: string): string {
 		return url.split("_")[1];
 	}
 
-	setRecipesFromDb(res: QuerySnapshot | undefined, callBack: Dispatch<SetStateAction<FirestoreData[]>>): void {
-		const userRecipes: FirestoreData[] = [];
+	setRecipesFromDb(res: QuerySnapshot | undefined, callBack: Dispatch<SetStateAction<RecipeItem[]>>): void {
+		const userRecipes: RecipeItem[] = [];
 		if (res) {
 			res.forEach((doc) => {
-				userRecipes.push(doc.data() as FirestoreData);
+				userRecipes.push(doc.data() as RecipeItem);
 			});
 			callBack(userRecipes);
 		} else {

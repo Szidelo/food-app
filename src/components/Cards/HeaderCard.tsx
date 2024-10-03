@@ -1,7 +1,11 @@
+import useSaveRecipe from "../../customHooks/useSaveRecipe";
+import { ICONS } from "../../utils/constants/saveIcons";
 import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 
 function HeaderCard(props: RecipeItem) {
-	const { image, label, cuisineType, dishType, url, calories, totalNutrients, yield: servings } = props;
+	const { image, label, cuisineType, dishType, url, calories, totalNutrients, yield: servings, uri } = props;
+	const { isSaved, handleSaveRecipe } = useSaveRecipe(props, uri);
+
 	return (
 		<div className="flex flex-col lg:flex-row bg-orange-wheel rounded-none lg:rounded-lg shadow-md p-4 lg:mb-5">
 			<div className="lg:w-[300px] lg:h-[300px]">
@@ -31,9 +35,14 @@ function HeaderCard(props: RecipeItem) {
 								<span className="capitalize font-extrabold text-lg">{servings}</span>
 							</div>
 						</div>
-						<a className="lg:mt-auto my-6 lg:my-0 hidden lg:block" href={url} target="_blank" rel="noreferrer">
-							<button className="btn btn-text-action-secundary w-full lg:w-auto">View Recipe</button>
-						</a>
+						<div className="w-full items-center gap-6 hidden lg:flex">
+							<button onClick={handleSaveRecipe} className="btn btn-card-header text-black">
+								{isSaved ? ICONS.full : ICONS.empty}
+							</button>
+							<a className="lg:mt-auto my-6 lg:my-0" href={url} target="_blank" rel="noreferrer">
+								<button className="btn btn-card-header w-full lg:w-auto">Full Recipe</button>
+							</a>
+						</div>
 					</div>
 					<div className="h-full bg-black w-[1px]"></div>
 					<div className="flex flex-col lg:w-[300px]">
@@ -49,9 +58,14 @@ function HeaderCard(props: RecipeItem) {
 							<p className="text-start capitalize">carbs: </p>
 							<span className="capitalize font-extrabold text-lg">{totalNutrients.CHOCDF.quantity.toFixed()}g</span>
 						</div>
-						<a className="lg:mt-auto my-6 lg:my-0 block lg:hidden" href={url} target="_blank" rel="noreferrer">
-							<button className="btn btn-text-action-secundary w-full lg:w-auto">View Recipe</button>
-						</a>
+						<div className="w-full items-center gap-6 flex lg:hidden">
+							<button onClick={handleSaveRecipe} className="btn btn-card-header text-black">
+								{isSaved ? ICONS.full : ICONS.empty}
+							</button>
+							<a className="lg:mt-auto my-6 lg:my-0" href={url} target="_blank" rel="noreferrer">
+								<button className="btn btn-card-header w-full lg:w-auto">Full Recipe</button>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

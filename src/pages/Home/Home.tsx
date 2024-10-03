@@ -4,6 +4,7 @@ import { RecipeItem } from "../../utils/interfaces/providers/apiResponse";
 import { recipeService } from "../../utils/service/Rceipe";
 import FoodGallery from "../../components/FoodGallery/FoodGallery";
 import About from "../../components/About/About";
+import bg1 from "../../assets/bg1.jpg";
 
 function Home() {
 	const [recipes, setRecipes] = useState<RecipeItem[]>([]);
@@ -21,7 +22,7 @@ function Home() {
 	}, [recipes]);
 	return (
 		<section>
-			<Header type="large" title="Welcome to FoodApp" description={description} buttons={buttons} />
+			<Header image={bg1} type="large" title="Welcome to FoodApp" description={description} buttons={buttons} />
 			<FoodGallery title="Recepies you might like..." recipes={recipes} />
 			<About />
 		</section>

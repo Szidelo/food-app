@@ -39,6 +39,7 @@ export interface UserData {
 	displayName: string;
 	photoURL: string;
 	email: string;
+	id?: string;
 }
 
 export interface FirestoreData {

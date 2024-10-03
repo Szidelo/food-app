@@ -55,7 +55,7 @@ function RecipeDetails() {
 			<div className="container mx-auto mt-0 lg:mt-48 flex flex-col lg:flex-row">
 				<div className="w-full lg:w-2/3">
 					{recipe && <HeaderCard {...recipe} />}
-					<div className="bg-grey p-4 rounded-lg shadow-lg">
+					<div className="bg-grey p-4 rounded-lg shadow-lg pt-16 lg:pt-4">
 						<div className="w-full">
 							<h1 className="text-4xl font-bold mb-10">{recipe?.ingredients.length} Ingredients</h1>
 							<table className="details__table table-auto w-full overflow-x-auto">
@@ -94,7 +94,7 @@ function RecipeDetails() {
 						<div className="w-1/2"></div>
 					</div>
 				</div>
-				<div className="w-full lg:w-1/3 bg-white rounded-xl shadow-lg p-4 lg:ms-5">
+				<div className="w-full lg:w-1/3 bg-white rounded-xl p-4 lg:ms-5 pt-16 lg:pt-4">
 					<h1 className="text-4xl font-bold text-center mb-10">Similar Recipes</h1>
 					<div className="flex flex-wrap items-center justify-center gap-6 recipe__similar-list">
 						{similarRecipes.length > 0 &&
@@ -104,7 +104,7 @@ function RecipeDetails() {
 						<button
 							disabled={numberOfSimilarRecipes >= similarRecipes.length - 1}
 							onClick={handleSimilarRecipes}
-							className="btn btn-dark">
+							className="btn btn-card-header">
 							View More
 						</button>
 					</div>

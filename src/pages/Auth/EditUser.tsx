@@ -21,10 +21,10 @@ function EditUser() {
 	};
 
 	return (
-		<div>
+		<div className="mt-20">
 			<h1>edit user</h1>
 			<form onSubmit={handleFormSubmit}>
-				<input type="text" name="image" placeholder="Picture URL" />
+				<input className="p-4 shadow-lg" type="text" name="image" placeholder="Picture URL" />
 				<button>Save</button>
 			</form>
 		</div>
