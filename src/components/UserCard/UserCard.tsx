@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import AuthService from "../../utils/service/AuthService";
 import { userCardClasses } from "./userCardClasses";
-import { STATIC_IMAGES } from "../../utils/constants/images";
+import RandomUserIcon from "./RandomUserIcon";
 
 function UserCard() {
 	const reduxUser = useAppSelector((state) => state.auth.user);
@@ -21,7 +21,11 @@ function UserCard() {
 					<div className={flexColContainer}>
 						<h2 className={title}>Hi, {reduxUser.name}!</h2>
 						<div className={imageConainer}>
-							<img className={image} src={reduxUser.picture || STATIC_IMAGES.USER} alt="user" />
+							{reduxUser.picture ? (
+								<img className={image} src={reduxUser.picture} alt="user" />
+							) : (
+								<RandomUserIcon name={reduxUser.name as string} />
+							)}
 						</div>
 						<button onClick={handleLogout} className="btn btn-link rounded-full ms-6">
 							Log Out

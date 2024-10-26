@@ -3,7 +3,7 @@ import { auth } from "../../firebase/Firebase";
 import { login, logout, setToken, update } from "../../redux/slices/authSlice";
 import { AuthFormSignIn, AuthFormSignUp } from "../helpers/form";
 import { AppDispatch } from "../../redux/store/store";
-import { User, UserData } from "../interfaces/items/itemsInterfaces";
+import { UserData } from "../interfaces/items/itemsInterfaces";
 import { firestoreService } from "./Firestore";
 import { FirebaseError } from "firebase/app";
 
@@ -15,8 +15,12 @@ class AuthService {
 	async getUserToken(): Promise<string | null> {
 		const user = this.getUser();
 		if (user) {
-			const token = await user.getIdToken();
-			return token;
+			try {
+				const token = await user.getIdToken();
+				return token;
+			} catch (error) {
+				console.error("Error fetching token:", error);
+			}
 		}
 		return null;
 	}
@@ -75,19 +79,29 @@ class AuthService {
 		}
 	}
 
-	async handleAuthStateChange(currentUser: User | null): Promise<void> {
+	async handleAuthStateChange(): Promise<void> {
 		this.userAuth.onAuthStateChanged(async (user) => {
 			if (user) {
-				const { email, displayName, photoURL, uid } = user;
-				if (email?.toLowerCase() === currentUser?.email?.toLowerCase()) {
-					console.log("user already logged in", user);
-				}
+				try {
+					const { email, displayName, photoURL, uid } = user;
 
-				this.dispatch(login({ email: email || "", name: displayName || "", picture: photoURL || "", id: uid }));
-				this.dispatch(setToken((await this.getUserToken()) || ""));
-				console.log("user state", user);
+					// Dispatch user login
+					this.dispatch(login({ email: email || "", name: displayName || "", picture: photoURL || "", id: uid }));
+
+					// Get user token and dispatch to Redux
+					const token = await this.getUserToken();
+					if (token) {
+						this.dispatch(setToken(token));
+					}
+
+					console.log("User authenticated:", user);
+				} catch (error) {
+					console.error("Error during user token retrieval", error);
+				}
 			} else {
-				console.log("no user");
+				// No user is logged in, clear state if needed
+				this.dispatch(logout());
+				console.log("No user authenticated");
 			}
 		});
 	}

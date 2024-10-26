@@ -36,7 +36,7 @@ function Header(props: PropsType) {
 			<svg className="home__svg-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
 				<path
 					fill="#fff"
-					fill-opacity="1"
+					fillOpacity="1"
 					d="M0,256L120,261.3C240,267,480,277,720,266.7C960,256,1200,224,1320,208L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
 			</svg>
 		</div>

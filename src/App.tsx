@@ -1,33 +1,31 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "./redux/hooks/hooks";
+import { addFavorite } from "./redux/slices/favoriteSlice";
+import { firestoreService } from "./utils/service/Firestore";
+import { helpers } from "./utils/helpers/functions";
+import { RecipeItem } from "./utils/interfaces/providers/apiResponse";
 import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home/Home";
 import TestPage from "./pages/TestPage/TestPage";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import AuthService from "./utils/service/AuthService";
-import { useAppSelector } from "./redux/hooks/hooks";
 import DbTestPage from "./pages/TestPage/DbTestPage";
 import TestBmi from "./pages/TestPage/TestBmi";
 import EditUser from "./pages/Auth/EditUser";
 import Navbar from "./components/Navbar/Navbar";
 import Food from "./pages/Food/Food";
 import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
-import { firestoreService } from "./utils/service/Firestore";
-import { helpers } from "./utils/helpers/functions";
-import { addFavorite } from "./redux/slices/favoriteSlice";
-import { RecipeItem } from "./utils/interfaces/providers/apiResponse";
 
 function App() {
 	const dispatch = useDispatch();
 	const user = useAppSelector((state) => state.auth.user);
-	const authServ = new AuthService(dispatch);
-
 	const [favorites, setFavorites] = useState<RecipeItem[]>([]);
 
 	useEffect(() => {
-		authServ.handleAuthStateChange(user);
-		// eslint-disable-next-line
-	}, []);
+		const authServ = new AuthService(dispatch);
+		authServ.handleAuthStateChange();
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (user) {

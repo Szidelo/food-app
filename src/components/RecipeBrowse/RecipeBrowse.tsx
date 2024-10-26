@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPizzaSlice } from "react-icons/fa";
 import { FaSpaghettiMonsterFlying } from "react-icons/fa6";
 import { GiChickenOven, GiSadCrab } from "react-icons/gi";
@@ -139,7 +139,7 @@ function RecipeBrowse() {
 					</button>
 				</div>
 				<div className="container px-2 lg:px-0 flex flex-wrap justify-between mx-auto mt-14">
-					{loading && <Spinner />}
+					{loading && <Spinner mode="dark" />}
 					{!loading && recipes.length > 0
 						? recipes.map((recipe) => (
 								<SmallCard

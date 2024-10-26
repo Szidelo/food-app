@@ -28,6 +28,8 @@ function UserModal({ isVisible, onClose }: UserModalProps) {
 			onClose();
 			setIsClosing(false);
 		}, 150);
+
+		reset();
 	};
 
 	useEffect(() => {
@@ -90,7 +92,7 @@ function UserModal({ isVisible, onClose }: UserModalProps) {
 					<div>
 						<img className="rounded-full w-24 h-24 object-cover shadow-lg" src={user?.picture} alt="" />
 					</div>
-					<form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col gap-4 min-w-64" action="">
+					<form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col gap-4 min-w-64">
 						<div className="text-white flex flex-col gap-4 authform__form-control">
 							<label>Set your name</label>
 							<input type="text" placeholder="Name" {...register("name")} />
