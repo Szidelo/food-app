@@ -84,7 +84,7 @@ function Navbar() {
 					<Link to="/recipes">Recipes</Link>
 				</li>
 				<li>
-					<Link to="/test-page">Test Page</Link>
+					<Link to="/favorites">Saved Recipes</Link>
 				</li>
 				<li>
 					<Link to="/db">DB Test Page</Link>

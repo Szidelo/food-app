@@ -247,6 +247,13 @@
 	color: var(--white);
 }
 
+.social-icon {
+	/* transition: all 0.01s ease !important; */
+	&:hover {
+		color: var(--orange-wheel);
+	}
+}
+
 @media (max-width: 768px) {
 	.btn-food-icon {
 		padding: 1.25em;

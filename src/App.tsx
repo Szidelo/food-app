@@ -47,7 +47,8 @@ function App() {
 			) : (
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="recipes" element={<Food />} />
+					<Route path="recipes" element={<Food page="recipes" />} />
+					<Route path="favorites" element={<Food page="favourites" />} />
 					<Route path="recipes/:id" element={<RecipeDetails />} />
 					<Route path="test-page" element={<TestPage />} />
 					<Route path="auth" element={<Auth />} />
