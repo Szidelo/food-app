@@ -1,37 +1,23 @@
-import React from "react";
-import { FaFacebook, FaInstagram, FaTwitter, FaGoogle, FaYoutube } from "react-icons/fa";
-
-const cssClasss = {
-	footerStyle: "w-full py-14 flex flex-col justify-between items-center bg-caribbean-current-dark text-white",
-	iconStyle: "w-10 h-10 mx-2 cursor-pointer social-icon transition duration-10",
-	navLinkStyle: "mx-2 cursor-pointer social-icon transition duration-300",
-};
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { SiFrontendmentor } from "react-icons/si";
 
 function Footer() {
-	const { footerStyle, iconStyle, navLinkStyle } = cssClasss;
+	const iconStyle = "w-10 h-10 mx-2 cursor-pointer social-icon transition duration-10";
+
 	return (
-		<footer className={footerStyle}>
-			<div className="flex justify-between">
-				<FaFacebook className={iconStyle} />
-				<FaInstagram className={iconStyle} />
-				<FaTwitter className={iconStyle} />
-				<FaGoogle className={iconStyle} />
-				<FaYoutube className={iconStyle} />
+		<footer className="w-full py-14 flex flex-col justify-between items-center bg-caribbean-current-dark text-white">
+			<p className="text-center mb-4">All rights reserved @Szidelo Claudiu 2024</p>
+			<div className="flex max-w-fit mx-auto mb-16 md:mb-0">
+				<a href="https://www.linkedin.com/in/claudiu-szidelo-671b1324a/" target="_blank" rel="noopener noreferrer">
+					<FaLinkedin className={iconStyle} />
+				</a>
+				<a href="https://github.com/szidelo" target="_blank" rel="noopener noreferrer">
+					<FaGithub className={iconStyle} />
+				</a>
+				<a href="https://www.frontendmentor.io/profile/szidelo" target="_blank" rel="noopener noreferrer">
+					<SiFrontendmentor className={iconStyle} />
+				</a>
 			</div>
-			<nav className="mt-4">
-				<a href="/home" className={navLinkStyle}>
-					Home
-				</a>
-				<a href="/news" className={navLinkStyle}>
-					News
-				</a>
-				<a href="/about" className={navLinkStyle}>
-					About
-				</a>
-				<a href="/contact" className={navLinkStyle}>
-					Contact
-				</a>
-			</nav>
 		</footer>
 	);
 }
