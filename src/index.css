@@ -608,3 +608,16 @@
 		scale: 0;
 	}
 }
+
+/* HEALTH PAGE */
+
+.health__container {
+	display: flex;
+	min-height: 100vh;
+	margin-top: 96px;
+}
+
+.health__container header {
+	border: 1px solid red;
+	width: 180px;
+}
