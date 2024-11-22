@@ -1,5 +1,5 @@
 function BmrCalculator() {
-	return <div className="mt-24">BmrCalculator</div>;
+	return <div className="m-10 text-2xl font-bold">BmrCalculator</div>;
 }
 
 export default BmrCalculator;

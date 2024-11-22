@@ -87,7 +87,7 @@ function Navbar() {
 					<Link to="/favorites">Favorite Recipes</Link>
 				</li>
 				<li>
-					<Link to="/health">Health</Link>
+					<Link to="/health/bmi-calculator">Health</Link>
 				</li>
 			</ul>
 			<div className="cursor-pointer" onClick={() => setIsUserModalOpen((prev) => !prev)}>
@@ -114,7 +114,7 @@ function Navbar() {
 					</div>
 					<span className="text-sm mt-8 text-orange-wheel">{user?.name?.split(" ")[0]}</span>
 				</button>
-				<Link to="/bmi" className="flex flex-col items-center w-full">
+				<Link to="/health/bmi-calculator" className="flex flex-col items-center w-full">
 					<LuLayoutDashboard className="w-7 h-7 text-orange-wheel" />
 				</Link>
 				<Link to="/" onClick={handleSignOut} className="flex flex-col items-center w-full">
