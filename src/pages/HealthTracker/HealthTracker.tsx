@@ -1,5 +1,3 @@
-import React from "react";
-
 function HealthTracker() {
 	return <div className="mt-24">HealthTracker</div>;
 }

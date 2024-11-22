@@ -55,8 +55,8 @@ function App() {
 					<Route path="favorites" element={<Food page="favourites" />} />
 					<Route path="recipes/:id" element={<RecipeDetails />} />
 					<Route path="health" element={<Health />}>
-						<Route path="bmi" element={<BmiCalculator />} />
-						<Route path="bmr" element={<BmrCalculator />} />
+						<Route path="bmi-calculator" element={<BmiCalculator />} />
+						<Route path="bmr-calculator" element={<BmrCalculator />} />
 						<Route path="health-tracker" element={<HealthTracker />} />
 					</Route>
 					<Route path="test-page" element={<TestPage />} />
