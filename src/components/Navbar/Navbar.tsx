@@ -84,19 +84,10 @@ function Navbar() {
 					<Link to="/recipes">Recipes</Link>
 				</li>
 				<li>
-					<Link to="/favorites">Saved Recipes</Link>
+					<Link to="/favorites">Favorite Recipes</Link>
 				</li>
 				<li>
-					<Link to="/db">DB Test Page</Link>
-				</li>
-				<li>
-					<Link to="/bmi">BMI Test</Link>
-				</li>
-				<li>
-					<Link to="/user">Edit User</Link>
-				</li>
-				<li>
-					<Link to="/auth">Auth</Link>
+					<Link to="/health">Health</Link>
 				</li>
 			</ul>
 			<div className="cursor-pointer" onClick={() => setIsUserModalOpen((prev) => !prev)}>

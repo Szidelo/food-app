@@ -9,10 +9,9 @@ interface FoodProps {
 
 function Food(props: FoodProps) {
 	const { page } = props;
-	const title = page === "recipes" || page === "food" ? "" : "Favourites";
 	return (
 		<section className="food__main ">
-			<Header type="small" title={title} buttons={[]} />
+			<Header type="small" title="" buttons={[]} />
 			{page === "recipes" && <RecipeBrowse />}
 			{page === "favourites" && <SavedRecipes />}
 			<Footer />
